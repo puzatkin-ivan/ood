@@ -2,7 +2,9 @@
 #include "RedheadDuck.h"
 
 RedheadDuck::RedheadDuck()
-	: Duck(std::make_unique<FlyWithWings>(), std::make_unique<QuackBehavior>())
+	: Duck(std::make_unique<FlyWithWings>(),
+		std::make_unique<QuackBehavior>(),
+		std::make_unique<MinuetDanceBehavior>())
 {
 }
 

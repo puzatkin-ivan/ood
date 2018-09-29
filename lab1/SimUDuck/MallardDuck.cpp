@@ -2,7 +2,9 @@
 #include "MallardDuck.h"
 
 MallardDuck::MallardDuck()
-	: Duck(std::make_unique<FlyWithWings>(), std::make_unique<QuackBehavior>())
+	: Duck(std::make_unique<FlyWithWings>(),
+		std::make_unique<QuackBehavior>(),
+		std::make_unique<WaltzDanceBehavior>())
 {
 }
 

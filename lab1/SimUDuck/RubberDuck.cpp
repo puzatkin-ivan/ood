@@ -2,7 +2,9 @@
 #include "RubberDuck.h"
 
 RubberDuck::RubberDuck()
-	:Duck(std::make_unique<FlyNoWay>(), std::make_unique<SqueakBehavior>())
+	:Duck(std::make_unique<FlyNoWay>(),
+		std::make_unique<SqueakBehavior>(),
+		std::make_unique<NoDanceBehavior>())
 {
 }
 

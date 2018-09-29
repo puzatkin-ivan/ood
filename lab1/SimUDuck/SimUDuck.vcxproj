@@ -147,11 +147,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DanceBehaviors.h" />
+    <ClInclude Include="DecoyDuck.h" />
+    <ClInclude Include="Duck.h" />
+    <ClInclude Include="FlyBehaviors.h" />
+    <ClInclude Include="MallardDuck.h" />
+    <ClInclude Include="ModelDuck.h" />
+    <ClInclude Include="QuickBehaviors.h" />
+    <ClInclude Include="RedheadDuck.h" />
+    <ClInclude Include="RubberDuck.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SimUDuck.cpp" />
+    <ClCompile Include="DanceBehaviors.cpp" />
+    <ClCompile Include="DecoyDuck.cpp" />
+    <ClCompile Include="Duck.cpp" />
+    <ClCompile Include="FlyBehaviors.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MallardDuck.cpp" />
+    <ClCompile Include="ModelDuck.cpp" />
+    <ClCompile Include="QuickBehaviors.cpp" />
+    <ClCompile Include="RedheadDuck.cpp" />
+    <ClCompile Include="RubberDuck.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

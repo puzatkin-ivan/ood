@@ -2,10 +2,13 @@
 #include "Duck.h"
 
 Duck::Duck(std::unique_ptr<IFlyBehavior>&& flyBehavior,
-	std::unique_ptr<IQuackBehavior>&& quackBehavior)
+	std::unique_ptr<IQuackBehavior>&& quackBehavior,
+	std::unique_ptr<IDanceBehavior>&& danceBehavior)
 	:m_quackBehavior(std::move(quackBehavior))
+	,m_danceBehavior(std::move(danceBehavior))
 {
 	assert(m_quackBehavior);
+	assert(m_danceBehavior);
 	SetFlyBehavior(std::move(flyBehavior));
 }
 
@@ -26,7 +29,7 @@ void Duck::Fly()
 
 void Duck::Dance()
 {
-	std::cout << "I'm Dancing" << std::endl;
+	m_danceBehavior->Dance();
 }
 
 void Duck::SetFlyBehavior(std::unique_ptr<IFlyBehavior>&& flyBehavior)
