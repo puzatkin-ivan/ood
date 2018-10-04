@@ -3,7 +3,9 @@
 #include <functional>
 #include <iostream>
 
-#include "Strategies.h"
+#include "DanceBehaviors.h"
+#include "FlyBehaviors.h"
+#include "QuackBehaviors.h"
 
 class Duck
 {
