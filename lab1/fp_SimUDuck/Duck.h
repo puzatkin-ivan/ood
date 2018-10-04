@@ -18,7 +18,7 @@ public:
 	void Quack() const;
 	void Swim();
 	void Fly();
-	virtual void Dance();
+	void Dance();
 
 	void SetFlyBehavior(std::function<void()>&& flyBehavior);
 	virtual void Display() const = 0;
