@@ -45,10 +45,10 @@
     <ClInclude Include="DanceBehaviors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QuickBehaviors.h">
+    <ClInclude Include="Strategies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Strategies.h">
+    <ClInclude Include="QuackBehaviors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,6 +75,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RubberDuck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyBehaviors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DanceBehaivors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QuackBehaviors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

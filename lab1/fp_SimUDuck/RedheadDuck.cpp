@@ -2,9 +2,9 @@
 #include "RedheadDuck.h"
 
 RedheadDuck::RedheadDuck()
-	: Duck(FlyBehavior::GetFlyWithWings(),
-		QuackBehavior::GetQuackBehavior(),
-		DanceBehavior::GetMinuetDanceBehavior())
+	: Duck(FlyBehaviors::GetFlyWithWings(),
+		QuackBehaviors::GetQuackBehavior(),
+		DanceBehaviors::GetMinuetDanceBehavior())
 {
 }
 

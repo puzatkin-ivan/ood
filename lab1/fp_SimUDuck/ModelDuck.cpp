@@ -2,9 +2,9 @@
 #include "ModelDuck.h"
 
 ModelDuck::ModelDuck()
-	: Duck(FlyBehavior::GetFlyNoWay(),
-		QuackBehavior::GetQuackBehavior(),
-		DanceBehavior::GetNoDanceBehavior())
+	: Duck(FlyBehaviors::GetFlyNoWay(),
+		QuackBehaviors::GetQuackBehavior(),
+		DanceBehaviors::GetNoDanceBehavior())
 {
 }
 

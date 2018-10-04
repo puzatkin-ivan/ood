@@ -2,24 +2,11 @@
 #include <functional>
 #include <iostream>
 
-namespace DanceBehavior
+namespace DanceBehaviors
 {
-	std::function<void()> GetWaltzDanceBehavior()
-	{
-		return [] {
-			std::cout << "I'm dancing waltz." << std::endl;
-		};
-	}
+std::function<void()> GetWaltzDanceBehavior();
 
-	std::function<void()> GetMinuetDanceBehavior()
-	{
-		return [] {
-			std::cout << "I'm dancing minuet." << std::endl;
-		};
-	}
+std::function<void()> GetMinuetDanceBehavior();
 
-	std::function<void()> GetNoDanceBehavior()
-	{
-		return [] {};
-	}
+std::function<void()> GetNoDanceBehavior();
 }

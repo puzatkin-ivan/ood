@@ -2,9 +2,9 @@
 #include "MallardDuck.h"
 
 MallardDuck::MallardDuck()
-	: Duck(FlyBehavior::GetFlyWithWings(),
-		QuackBehavior::GetQuackBehavior(),
-		DanceBehavior::GetWaltzDanceBehavior())
+	: Duck(FlyBehaviors::GetFlyWithWings(),
+		QuackBehaviors::GetQuackBehavior(),
+		DanceBehaviors::GetWaltzDanceBehavior())
 {
 }
 

@@ -2,9 +2,9 @@
 #include "RubberDuck.h"
 
 RubberDuck::RubberDuck()
-	:Duck(FlyBehavior::GetFlyNoWay(),
-		QuackBehavior::GetSqueakBehavior(),
-		DanceBehavior::GetNoDanceBehavior())
+	:Duck(FlyBehaviors::GetFlyNoWay(),
+		QuackBehaviors::GetSqueakBehavior(),
+		DanceBehaviors::GetNoDanceBehavior())
 {
 }
 

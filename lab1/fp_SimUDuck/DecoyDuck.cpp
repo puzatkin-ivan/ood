@@ -2,9 +2,9 @@
 #include "DecoyDuck.h"
 
 DecoyDuck::DecoyDuck()
-	: Duck(FlyBehavior::GetFlyNoWay(),
-		QuackBehavior::GetMuteQuackBehavior(),
-		DanceBehavior::GetNoDanceBehavior())
+	: Duck(FlyBehaviors::GetFlyNoWay(),
+		QuackBehaviors::GetMuteQuackBehavior(),
+		DanceBehaviors::GetNoDanceBehavior())
 {
 }
 

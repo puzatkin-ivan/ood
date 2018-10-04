@@ -3,10 +3,7 @@
 #include <functional>
 #include <iostream>
 
-namespace
-{
 #include "Strategies.h"
-}
 
 class Duck
 {

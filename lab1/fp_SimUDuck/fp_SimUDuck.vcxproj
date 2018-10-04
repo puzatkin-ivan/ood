@@ -153,7 +153,7 @@
     <ClInclude Include="FlyBehaviors.h" />
     <ClInclude Include="MallardDuck.h" />
     <ClInclude Include="ModelDuck.h" />
-    <ClInclude Include="QuickBehaviors.h" />
+    <ClInclude Include="QuackBehaviors.h" />
     <ClInclude Include="RedheadDuck.h" />
     <ClInclude Include="RubberDuck.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,11 +161,14 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DanceBehaivors.cpp" />
     <ClCompile Include="DecoyDuck.cpp" />
     <ClCompile Include="Duck.cpp" />
+    <ClCompile Include="FlyBehaviors.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MallardDuck.cpp" />
     <ClCompile Include="ModelDuck.cpp" />
+    <ClCompile Include="QuackBehaviors.cpp" />
     <ClCompile Include="RedheadDuck.cpp" />
     <ClCompile Include="RubberDuck.cpp" />
     <ClCompile Include="stdafx.cpp">
