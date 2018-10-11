@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <climits>
 #include "Observer.h"
-#include "StreamBehaviors.h"
+#include "StatsCalculator.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ private:
 class CStatsDisplay : public IObserver<SWeatherInfo>
 {
 public:
-	CStatsDisplay(std::unique_ptr<IStreamBehaviors>&& streamBehaviors)
+	CStatsDisplay(std::unique_ptr<IStatsCalculator>&& streamBehaviors)
 		:m_streamBehaviors(std::move(streamBehaviors))
 	{
 	}
@@ -35,7 +35,7 @@ private:
 		m_streamBehaviors->Stream(data);
 	}
 
-	std::unique_ptr<IStreamBehaviors> m_streamBehaviors;
+	std::unique_ptr<IStatsCalculator> m_streamBehaviors;
 };
 
 class CWeatherData : public CObservable<SWeatherInfo>

@@ -27,10 +27,10 @@
     <ClInclude Include="WeatherData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StreamBehaviors.h">
+    <ClInclude Include="WeatherInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WeatherInfo.h">
+    <ClInclude Include="StatsCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
