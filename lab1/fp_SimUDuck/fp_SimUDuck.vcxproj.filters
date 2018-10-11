@@ -45,9 +45,6 @@
     <ClInclude Include="DanceBehaviors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Strategies.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="QuackBehaviors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
