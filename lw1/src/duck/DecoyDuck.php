@@ -4,7 +4,10 @@ class DecoyDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyNoWay(), new MuteQuackBehavior(), new NoDanceBehavior());
+        parent::__construct(
+            new FlyNoWay(),
+            new MuteQuackBehavior(),
+            new NoDanceBehavior());
     }
 
     public function display(): void

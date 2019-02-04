@@ -4,7 +4,10 @@ class RedheadDuck extends Duck
 {
     public function __construct()
     {
-        parent::__construct(new FlyWithWings(), new QuackBehavior(), new MinuetDanceBehavior());
+        parent::__construct(
+            new FlyWithWings(),
+            new QuackBehavior(),
+            new MinuetDanceBehavior());
     }
 
     public function display(): void
