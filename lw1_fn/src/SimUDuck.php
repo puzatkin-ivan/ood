@@ -27,6 +27,7 @@ class SimUDuck
         $this->drawDuck($duck);
         $duck->quack();
         $duck->fly();
+        $duck->fly();
         $duck->dance();
         echo PHP_EOL;
     }

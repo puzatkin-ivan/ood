@@ -15,7 +15,4 @@ class DecoyDuck extends Duck
         echo 'I\'m decoy duck' . PHP_EOL;
     }
 
-    public function dance(): void
-    {
-    }
 }
