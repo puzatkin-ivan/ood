@@ -9,7 +9,9 @@ abstract class Duck
     /** @var IDanceBehavior */
     private $danceBehavior;
 
-    public function __construct(IFlyBehavior $flyBehavior, IQuackBehavior $quackBehavior, IDanceBehavior $danceBehavior)
+    public function __construct(IFlyBehavior $flyBehavior,
+                                IQuackBehavior $quackBehavior,
+                                IDanceBehavior $danceBehavior)
     {
         $this->flyBehavior = $flyBehavior;
         $this->quackBehavior = $quackBehavior;
