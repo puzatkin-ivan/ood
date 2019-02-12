@@ -2,11 +2,14 @@
 
 class Display implements ObserverInterface
 {
-    public function update(WeatherInfo $info): void
+    /**
+     * @param ObservableInterface|WeatherData $observable
+     */
+    public function update(ObservableInterface $observable): void
     {
-        echo 'Current Temp ' . $info->temperature . PHP_EOL;
-        echo 'Current Hum ' . $info->humidity . PHP_EOL;
-        echo 'Current Pressure ' . $info->pressure . PHP_EOL;
+        echo 'Current Temp ' . $observable->getTemperature() . PHP_EOL;
+        echo 'Current Hum ' . $observable->getHumidity() . PHP_EOL;
+        echo 'Current Pressure ' . $observable->getPressure() . PHP_EOL;
         echo '----------------' . PHP_EOL;
     }
 }

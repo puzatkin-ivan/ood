@@ -9,6 +9,21 @@ class WeatherData extends Observable
     /** @var float */
     private $pressure = 760.0;
 
+    public function getTemperature(): float
+    {
+        return $this->temperature;
+    }
+
+    public function getHumidity(): float
+    {
+        return $this->humidity;
+    }
+
+    public function getPressure(): float
+    {
+        return $this->pressure;
+    }
+
     public function setMeasurements(float $temp, float $humidity, float $pressure): void
     {
         $this->temperature = $temp;

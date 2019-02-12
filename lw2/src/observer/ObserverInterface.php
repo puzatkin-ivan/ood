@@ -2,5 +2,5 @@
 
 interface ObserverInterface
 {
-    public function update(WeatherInfo $info): void;
+    public function update(ObservableInterface $observable): void;
 }
