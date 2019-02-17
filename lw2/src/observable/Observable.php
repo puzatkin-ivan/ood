@@ -1,6 +1,6 @@
 <?php
 
-abstract class Observable implements ObservableInterface
+class Observable implements ObservableInterface
 {
     /** @var ObserverInterface[] */
     private $observers = [];
@@ -12,11 +12,10 @@ abstract class Observable implements ObservableInterface
 
     public function notifyObservers(): void
     {
-        $data = $this->getChangedData();
         /** @var ObserverInterface $observer */
         foreach ($this->observers as $observer)
         {
-            $observer->update($data);
+            $observer->update($this);
         }
     }
 
@@ -28,6 +27,4 @@ abstract class Observable implements ObservableInterface
             unset($this->observers[$index]);
         }
     }
-
-    abstract protected function getChangedData(): WeatherInfo;
 }

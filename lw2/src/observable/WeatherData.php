@@ -36,13 +36,4 @@ class WeatherData extends Observable
     {
         $this->notifyObservers();
     }
-
-    protected function getChangedData(): WeatherInfo
-    {
-        $info = new WeatherInfo();
-        $info->temperature = $this->temperature;
-        $info->humidity = $this->humidity;
-        $info->pressure = $this->pressure;
-        return $info;
-    }
 }
