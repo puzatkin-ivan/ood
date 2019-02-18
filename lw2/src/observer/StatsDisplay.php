@@ -21,11 +21,8 @@ class StatsDisplay implements ObserverInterface
      */
     public function update(ObservableInterface $observable): void
     {
-        $this->tempCalculator->calculate($observable->getTemperature());
-        $this->humidityCalculator->calculate($observable->getHumidity());
-        $this->pressureCalculator->calculate($observable->getPressure());
-        echo $this->tempCalculator->printData() . PHP_EOL;
-        echo $this->humidityCalculator->printData() . PHP_EOL;
-        echo $this->pressureCalculator->printData() . PHP_EOL;
+        echo $this->tempCalculator->update($observable->getTemperature()) . PHP_EOL;
+        echo $this->humidityCalculator->update($observable->getHumidity()) . PHP_EOL;
+        echo $this->pressureCalculator->update($observable->getPressure()) . PHP_EOL;
     }
 }
