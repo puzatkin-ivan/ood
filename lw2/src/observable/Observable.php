@@ -12,8 +12,9 @@ class Observable implements ObservableInterface
 
     public function notifyObservers(): void
     {
+        $observers = $this->observers;
         /** @var ObserverInterface $observer */
-        foreach ($this->observers as $observer)
+        foreach ($observers as $observer)
         {
             $observer->update($this);
         }
