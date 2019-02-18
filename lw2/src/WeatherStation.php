@@ -7,10 +7,10 @@ class WeatherStation
         $wd = new WeatherData();
 
         $display = new Display();
-        $wd->registerObserver($display);
+        $wd->registerObserver($display, 1);
 
         $statsTemp = new StatsDisplay();
-        $wd->registerObserver($statsTemp);
+        $wd->registerObserver($statsTemp, 2);
 
         $wd->setMeasurements(3, 0.7, 760);
         $wd->setMeasurements(4, 0.8, 761);
