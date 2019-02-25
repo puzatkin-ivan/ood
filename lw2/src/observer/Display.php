@@ -1,6 +1,6 @@
 <?php
 
-class Display implements ObserverInterface
+class Display extends Entity implements ObserverInterface
 {
     /**
      * @param ObservableInterface|WeatherData $observable

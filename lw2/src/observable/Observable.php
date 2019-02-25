@@ -3,46 +3,42 @@
 class Observable implements ObservableInterface
 {
     /** @var ObserverInterface[] */
-    private $observers = [];
+    private $followers = [];
 
     public function registerObserver(ObserverInterface $observer, int $priority): void
     {
-        $index = array_search($observer, $this->observers);
-        $item = ['observer' => $observer, 'priority' => $priority];
-        if ($index)
-        {
-            $this->observers[$index] = $item;
-        }
-        else
-        {
-            array_push($this->observers, $item);
-        }
+        $follower = new Follower($observer, $priority);
+        $this->followers[$follower->getUid()] = $follower;
     }
 
     public function notifyObservers(): void
     {
         $this->sortByPriority();
-        $observers = $this->observers;
+        $followers = $this->followers;
         /** @var array $observer */
-        foreach ($observers as $observer)
+        foreach ($followers as $follower)
         {
-            $observer['observer']->update($this);
+            $follower->update($this);
         }
     }
 
     public function removeObservers(ObserverInterface $observer): void
     {
-        $index = array_search($observer, $this->observers);
-        if ($index)
+        $uid = $observer->getUid();
+        if (isset($this->followers[$uid]))
         {
-            unset($this->observers[$index]);
+            unset($this->followers[$uid]);
         }
     }
 
     private function sortByPriority()
     {
-        usort($this->observers, function($lhs, $rhs) {
-            return $lhs['priority'] < $rhs['priority'];
+        usort($this->followers, function($lhs, $rhs) {
+            /**
+             * @var Follower $lhs
+             * @var Follower $rhs
+             */
+            return $lhs->getPriority() < $rhs->getPriority();
         });
     }
 }

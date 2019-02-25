@@ -1,6 +1,6 @@
 <?php
 
-class StatsDisplay implements ObserverInterface
+class StatsDisplay extends Entity implements ObserverInterface
 {
     /** @var StatsCalculator */
     private $tempCalculator;
@@ -11,6 +11,7 @@ class StatsDisplay implements ObserverInterface
 
     public function __construct()
     {
+        parent::__construct();
         $this->tempCalculator = new StatsCalculator('Temperature');
         $this->humidityCalculator = new StatsCalculator('Humidity');
         $this->pressureCalculator = new StatsCalculator('Pressure');
@@ -21,8 +22,24 @@ class StatsDisplay implements ObserverInterface
      */
     public function update(ObservableInterface $observable): void
     {
-        echo $this->tempCalculator->update($observable->getTemperature()) . PHP_EOL;
-        echo $this->humidityCalculator->update($observable->getHumidity()) . PHP_EOL;
-        echo $this->pressureCalculator->update($observable->getPressure()) . PHP_EOL;
+        $this->tempCalculator->update($observable->getTemperature());
+        $this->humidityCalculator->update($observable->getHumidity());
+        $this->pressureCalculator->update($observable->getPressure());
+        echo $this->showChange($this->tempCalculator) . PHP_EOL;
+        echo $this->showChange($this->humidityCalculator) . PHP_EOL;
+        echo $this->showChange($this->pressureCalculator) . PHP_EOL;
+    }
+
+    private function showChange(StatsCalculator $calculator): string
+    {
+        $type = $calculator->getType();
+        $max = $calculator->getMax();
+        $min = $calculator->getMin();
+        $average = $calculator->getAverage();
+        $result = 'Max ' . $type . ' ' . round($max, 3) . PHP_EOL;
+        $result .= 'Min ' . $type . ' ' . round($min, 3) . PHP_EOL;
+        $result .= 'Average ' . $type . ' ' . round($average, 3) . PHP_EOL;
+        $result .= '----------------';
+        return $result;
     }
 }

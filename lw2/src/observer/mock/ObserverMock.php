@@ -1,6 +1,6 @@
 <?php
 
-class ObserverMock implements ObserverInterface
+class ObserverMock extends Entity implements ObserverInterface
 {
     /** @var string */
     private $name;
@@ -8,6 +8,7 @@ class ObserverMock implements ObserverInterface
     public function __construct(string $name)
     {
         $this->name = $name;
+        parent::__construct();
     }
 
     public function update(ObservableInterface $observable): void

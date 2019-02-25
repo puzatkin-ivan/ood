@@ -8,7 +8,7 @@ class StatsCalculator
     private $max = PHP_FLOAT_MIN;
     /** @var float */
     private $min = PHP_FLOAT_MAX;
-    /** @var int */
+    /** @var float */
     private $acc;
     /** @var int */
     private $count = 0;
@@ -18,17 +18,31 @@ class StatsCalculator
         $this->type = $type;
     }
 
-    public function update(float $data)
+    public function update(float $data): void
     {
         $this->max = max([$this->max, $data]);
         $this->min = min([$this->min, $data]);
         $this->acc += $data;
         ++$this->count;
+    }
 
-        $result = 'Max ' . $this->type . ' ' . round($this->max, 3) . PHP_EOL;
-        $result .= 'Min ' . $this->type . ' ' . round($this->min, 3) . PHP_EOL;
-        $result .= 'Average ' . $this->type . ' ' . round($this->acc / $this->count, 3) . PHP_EOL;
-        $result .= '----------------';
-        return $result;
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getMax(): float
+    {
+        return $this->max;
+    }
+
+    public function getMin(): float
+    {
+        return $this->min;
+    }
+
+    public function getAverage(): float
+    {
+        return round($this->acc / $this->count, 3);
     }
 }
