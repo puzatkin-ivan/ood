@@ -2,12 +2,27 @@
 
 class WeatherData extends Observable
 {
+    public const EXTERNAL_SENSORS = 1;
+    public const INTERNAL_SENSORS = 2;
+
     /** @var float */
     private $temperature = 0.0;
     /** @var float */
     private $humidity = 0.0;
     /** @var float */
     private $pressure = 760.0;
+    /** @var int */
+    private $sensorType;
+
+    public function __construct(?int $sensorType = WeatherData::INTERNAL_SENSORS)
+    {
+        $this->sensorType = $sensorType;
+    }
+
+    public function getSensorType(): int
+    {
+        return $this->sensorType;
+    }
 
     public function getTemperature(): float
     {

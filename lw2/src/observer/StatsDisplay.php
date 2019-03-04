@@ -25,6 +25,9 @@ class StatsDisplay extends Entity implements ObserverInterface
         $this->tempCalculator->update($observable->getTemperature());
         $this->humidityCalculator->update($observable->getHumidity());
         $this->pressureCalculator->update($observable->getPressure());
+        $sensorType = $observable->getSensorType() ? 'external' : 'internal';
+
+        echo 'Type Sensors: ' . $sensorType . PHP_EOL;
         echo $this->showChange($this->tempCalculator) . PHP_EOL;
         echo $this->showChange($this->humidityCalculator) . PHP_EOL;
         echo $this->showChange($this->pressureCalculator) . PHP_EOL;

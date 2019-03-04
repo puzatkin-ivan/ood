@@ -6,7 +6,7 @@ use \PHPUnit\Framework\TestCase;
 
 final class WeatherDataTest extends TestCase
 {
-    public function testRemoveObserverOnUpdate()
+    public function testRemoveObserverOnUpdate(): void
     {
         $observable = new Observable();
         $observable->registerObserver(new ObserverMock('First'), 1);
@@ -18,7 +18,7 @@ final class WeatherDataTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testNotifyObserversByPriority()
+    public function testNotifyObserversByPriority(): void
     {
         $observable = new Observable();
         $observable->registerObserver(new ObserverMock('First'), 1);
@@ -29,5 +29,20 @@ final class WeatherDataTest extends TestCase
         $stream = ob_get_flush();
         ob_clean();
         $this->assertEquals("Third\r\nSecond\r\nFirst\r\n", $stream);
+    }
+
+    public function testNotifyObserversFromDifferentSensorTypes(): void
+    {
+        $externalObservable = new WeatherData(WeatherData::EXTERNAL_SENSORS);
+        $internalObservable = new WeatherData(WeatherData::INTERNAL_SENSORS);
+        $observer = new DistinguishingSensorsObserverMock();
+        $externalObservable->registerObserver($observer, 1);
+        $internalObservable->registerObserver($observer, 1);
+        ob_start();
+        $internalObservable->notifyObservers();
+        $externalObservable->notifyObservers();
+        $stream = ob_get_flush();
+        ob_clean();
+        $this->assertEquals(' internal external', $stream);
     }
 }
