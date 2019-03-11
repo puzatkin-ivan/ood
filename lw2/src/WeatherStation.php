@@ -4,14 +4,14 @@ class WeatherStation
 {
     public function run()
     {
-        $wd = new WeatherData(WeatherData::EXTERNAL_SENSORS);
-        $wdInternal = new WeatherData(WeatherData::INTERNAL_SENSORS);
+        $wd = new WeatherData();
+        $wdInternal = new WeatherData();
 
-        $display = new Display();
+        $display = new Display($wdInternal, $wd);
         $wd->registerObserver($display, 1);
         $wdInternal->registerObserver($display, 2);
 
-        $statsTemp = new StatsDisplay();
+        $statsTemp = new StatsDisplay($wdInternal, $wd);
         $wd->registerObserver($statsTemp, 2);
         $wdInternal->registerObserver($statsTemp, 1);
 

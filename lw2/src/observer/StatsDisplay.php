@@ -8,13 +8,19 @@ class StatsDisplay extends Entity implements ObserverInterface
     private $humidityCalculator;
     /** @var StatsCalculator */
     private $pressureCalculator;
+    /** @var WeatherData */
+    private $inWeatherData;
+    /** @var WeatherData */
+    private $outWeatherData;
 
-    public function __construct()
+    public function __construct(WeatherData &$in, WeatherData &$out)
     {
         parent::__construct();
         $this->tempCalculator = new StatsCalculator('Temperature');
         $this->humidityCalculator = new StatsCalculator('Humidity');
         $this->pressureCalculator = new StatsCalculator('Pressure');
+        $this->inWeatherData = $in;
+        $this->outWeatherData = $out;
     }
 
     /**
@@ -25,9 +31,9 @@ class StatsDisplay extends Entity implements ObserverInterface
         $this->tempCalculator->update($observable->getTemperature());
         $this->humidityCalculator->update($observable->getHumidity());
         $this->pressureCalculator->update($observable->getPressure());
-        $sensorType = $observable->getSensorType() ? 'external' : 'internal';
+        $sensorType = ($this->inWeatherData === $observable);
 
-        echo 'Type Sensors: ' . $sensorType . PHP_EOL;
+        echo 'Type Sensors: ' . $sensorType ? 'internal' : 'external' . PHP_EOL;
         echo $this->showChange($this->tempCalculator) . PHP_EOL;
         echo $this->showChange($this->humidityCalculator) . PHP_EOL;
         echo $this->showChange($this->pressureCalculator) . PHP_EOL;
