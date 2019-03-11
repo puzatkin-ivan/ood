@@ -44,12 +44,10 @@ class StatsDisplay extends Entity implements ObserverInterface
         $this->inSensors->tempCalculator->update($observable->getTemperature());
         $this->inSensors->humidityCalculator->update($observable->getHumidity());
         $this->inSensors->pressureCalculator->update($observable->getPressure());
+        $this->inSensors->windSpeedCalculator->update($observable->getWindSpeed());
+        $this->inSensors->windDirectionCalculator->update($observable->getWindDirection());
 
-
-        echo 'Type Sensors: internal' . PHP_EOL;
-        echo $this->showChange($this->inSensors->tempCalculator) . PHP_EOL;
-        echo $this->showChange($this->inSensors->humidityCalculator) . PHP_EOL;
-        echo $this->showChange($this->inSensors->pressureCalculator) . PHP_EOL;
+        $this->showChanges($this->inSensors, 'internal');
     }
 
     /**
@@ -60,13 +58,22 @@ class StatsDisplay extends Entity implements ObserverInterface
         $this->outSensors->tempCalculator->update($observable->getTemperature());
         $this->outSensors->humidityCalculator->update($observable->getHumidity());
         $this->outSensors->pressureCalculator->update($observable->getPressure());
+        $this->outSensors->windSpeedCalculator->update($observable->getWindSpeed());
+        $this->outSensors->windDirectionCalculator->update($observable->getWindDirection());
 
-
-        echo 'Type Sensors: external' . PHP_EOL;
-        echo $this->showChange($this->outSensors->tempCalculator) . PHP_EOL;
-        echo $this->showChange($this->outSensors->humidityCalculator) . PHP_EOL;
-        echo $this->showChange($this->outSensors->pressureCalculator) . PHP_EOL;
+        $this->showChanges($this->outSensors, 'external');
     }
+
+    private function showChanges(Sensors $sensors, string $sensorsType): void
+    {
+        echo 'Type of sensors: '. $sensorsType . PHP_EOL;
+        echo $this->showChange($sensors->tempCalculator) . PHP_EOL;
+        echo $this->showChange($sensors->humidityCalculator) . PHP_EOL;
+        echo $this->showChange($sensors->pressureCalculator) . PHP_EOL;
+        echo $this->showChange($sensors->windSpeedCalculator) . PHP_EOL;
+        echo 'Wind Direction: ' . $sensors->windDirectionCalculator->getDirection() . PHP_EOL;
+    }
+
 
     private function showChange(StatsCalculator $calculator): string
     {

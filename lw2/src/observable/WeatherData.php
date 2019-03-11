@@ -8,6 +8,10 @@ class WeatherData extends Observable
     private $humidity = 0.0;
     /** @var float */
     private $pressure = 760.0;
+    /** @var float */
+    private $windSpeed = 0.0;
+    /** @var float */
+    private $windDirection = 0.0;
 
     public function getTemperature(): float
     {
@@ -24,11 +28,25 @@ class WeatherData extends Observable
         return $this->pressure;
     }
 
-    public function setMeasurements(float $temp, float $humidity, float $pressure): void
+
+    public function getWindSpeed(): float
+    {
+        return $this->windSpeed;
+    }
+
+
+    public function getWindDirection(): float
+    {
+        return $this->windDirection;
+    }
+
+    public function setMeasurements(float $temp, float $humidity, float $pressure, float $windSpeed, float $windDirection): void
     {
         $this->temperature = $temp;
         $this->humidity = $humidity;
         $this->pressure = $pressure;
+        $this->windSpeed = $windSpeed;
+        $this->windDirection = $windDirection;
         $this->measurementsChanged();
     }
 
