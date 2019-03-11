@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../src/calculator/StatsCalculator.php';
+require_once __DIR__ . '/../src/sensors/Sensors.php';
 require_once __DIR__ . '/../src/observer/ObserverInterface.php';
 require_once __DIR__ . '/../src/observer/Entity.php';
 require_once __DIR__ . '/../src/observer/Follower.php';
