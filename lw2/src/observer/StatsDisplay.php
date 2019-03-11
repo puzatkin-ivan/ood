@@ -3,11 +3,17 @@
 class StatsDisplay extends Entity implements ObserverInterface
 {
     /** @var StatsCalculator */
-    private $tempCalculator;
+    private $inTempCalculator;
     /** @var StatsCalculator */
-    private $humidityCalculator;
+    private $inHumidityCalculator;
     /** @var StatsCalculator */
-    private $pressureCalculator;
+    private $inPressureCalculator;
+    /** @var StatsCalculator */
+    private $outTempCalculator;
+    /** @var StatsCalculator */
+    private $outHumidityCalculator;
+    /** @var StatsCalculator */
+    private $outPressureCalculator;
     /** @var WeatherData */
     private $inWeatherData;
     /** @var WeatherData */
@@ -16,9 +22,12 @@ class StatsDisplay extends Entity implements ObserverInterface
     public function __construct(WeatherData &$in, WeatherData &$out)
     {
         parent::__construct();
-        $this->tempCalculator = new StatsCalculator('Temperature');
-        $this->humidityCalculator = new StatsCalculator('Humidity');
-        $this->pressureCalculator = new StatsCalculator('Pressure');
+        $this->inTempCalculator = new StatsCalculator('Temperature');
+        $this->inHumidityCalculator = new StatsCalculator('Humidity');
+        $this->inPressureCalculator = new StatsCalculator('Pressure');
+        $this->outTempCalculator = new StatsCalculator('Temperature');
+        $this->outHumidityCalculator = new StatsCalculator('Humidity');
+        $this->outPressureCalculator = new StatsCalculator('Pressure');
         $this->inWeatherData = $in;
         $this->outWeatherData = $out;
     }
@@ -28,15 +37,47 @@ class StatsDisplay extends Entity implements ObserverInterface
      */
     public function update(ObservableInterface $observable): void
     {
-        $this->tempCalculator->update($observable->getTemperature());
-        $this->humidityCalculator->update($observable->getHumidity());
-        $this->pressureCalculator->update($observable->getPressure());
-        $sensorType = ($this->inWeatherData === $observable);
+        $isInternalSensors = ($this->inWeatherData === $observable);
+        if ($isInternalSensors)
+        {
+            $this->processInternalSensors($observable);
+        }
+        else
+        {
+            $this->processExternalSensors($observable);
+        }
+    }
 
-        echo 'Type Sensors: ' . $sensorType ? 'internal' : 'external' . PHP_EOL;
-        echo $this->showChange($this->tempCalculator) . PHP_EOL;
-        echo $this->showChange($this->humidityCalculator) . PHP_EOL;
-        echo $this->showChange($this->pressureCalculator) . PHP_EOL;
+    /**
+     * @param ObservableInterface|WeatherData $observable
+     */
+    private function processInternalSensors(ObservableInterface $observable): void
+    {
+        $this->inTempCalculator->update($observable->getTemperature());
+        $this->inHumidityCalculator->update($observable->getHumidity());
+        $this->inPressureCalculator->update($observable->getPressure());
+
+
+        echo 'Type Sensors: internal' . PHP_EOL;
+        echo $this->showChange($this->inTempCalculator) . PHP_EOL;
+        echo $this->showChange($this->inHumidityCalculator) . PHP_EOL;
+        echo $this->showChange($this->inPressureCalculator) . PHP_EOL;
+    }
+
+    /**
+     * @param ObservableInterface|WeatherData $observable
+     */
+    private function processExternalSensors(ObservableInterface $observable): void
+    {
+        $this->outTempCalculator->update($observable->getTemperature());
+        $this->outHumidityCalculator->update($observable->getHumidity());
+        $this->outPressureCalculator->update($observable->getPressure());
+
+
+        echo 'Type Sensors: external' . PHP_EOL;
+        echo $this->showChange($this->outTempCalculator) . PHP_EOL;
+        echo $this->showChange($this->outHumidityCalculator) . PHP_EOL;
+        echo $this->showChange($this->outPressureCalculator) . PHP_EOL;
     }
 
     private function showChange(StatsCalculator $calculator): string
