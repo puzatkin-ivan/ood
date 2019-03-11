@@ -28,40 +28,35 @@ class StatsDisplay extends Entity implements ObserverInterface
         $isInternalSensors = ($this->inWeatherData === $observable);
         if ($isInternalSensors)
         {
-            $this->processInternalSensors($observable);
+            $this->processSensors($this->inSensors, $observable, 'internal');
         }
         else
         {
-            $this->processExternalSensors($observable);
+            $this->processSensors($this->outSensors, $observable, 'external');
         }
     }
 
     /**
      * @param ObservableInterface|WeatherData $observable
      */
-    private function processInternalSensors(ObservableInterface $observable): void
+    private function processSensors(Sensors $sensors, ObservableInterface $observable, string $sensorsType): void
     {
-        $this->inSensors->tempCalculator->update($observable->getTemperature());
-        $this->inSensors->humidityCalculator->update($observable->getHumidity());
-        $this->inSensors->pressureCalculator->update($observable->getPressure());
-        $this->inSensors->windSpeedCalculator->update($observable->getWindSpeed());
-        $this->inSensors->windDirectionCalculator->update($observable->getWindDirection());
+        $this->updateSensors($sensors, $observable);
 
-        $this->showChanges($this->inSensors, 'internal');
+        $this->showChanges($sensors, $sensorsType);
     }
 
     /**
-     * @param ObservableInterface|WeatherData $observable
+     * @param Sensors $sensors
+     * @param ObserverInterface|WeatherData $observable
      */
-    private function processExternalSensors(ObservableInterface $observable): void
+    private function updateSensors(Sensors $sensors, ObserverInterface $observable): void
     {
-        $this->outSensors->tempCalculator->update($observable->getTemperature());
-        $this->outSensors->humidityCalculator->update($observable->getHumidity());
-        $this->outSensors->pressureCalculator->update($observable->getPressure());
-        $this->outSensors->windSpeedCalculator->update($observable->getWindSpeed());
-        $this->outSensors->windDirectionCalculator->update($observable->getWindDirection());
-
-        $this->showChanges($this->outSensors, 'external');
+        $sensors->tempCalculator->update($observable->getTemperature());
+        $sensors->humidityCalculator->update($observable->getHumidity());
+        $sensors->pressureCalculator->update($observable->getPressure());
+        $sensors->windSpeedCalculator->update($observable->getWindSpeed());
+        $sensors->windDirectionCalculator->update($observable->getWindDirection());
     }
 
     private function showChanges(Sensors $sensors, string $sensorsType): void
