@@ -18,10 +18,9 @@ class Display extends Entity implements ObserverInterface
      */
     public function update(ObservableInterface $observable): void
     {
-        $sensorType = ($this->inWeatherData === $observable);
+        $isInternalSensors = ($this->inWeatherData === $observable);
 
-        echo 'Type Sensors: ' . $sensorType ? 'internal' : 'external' . PHP_EOL;
-        echo 'Type Sensors: ' . $sensorType . PHP_EOL;
+        echo 'Type Sensors: ' . $isInternalSensors ? 'internal' : 'external' . PHP_EOL;
         echo 'Current Temp ' . $observable->getTemperature() . PHP_EOL;
         echo 'Current Hum ' . $observable->getHumidity() . PHP_EOL;
         echo 'Current Pressure ' . $observable->getPressure() . PHP_EOL;
