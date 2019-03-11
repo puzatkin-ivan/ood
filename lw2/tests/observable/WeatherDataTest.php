@@ -33,9 +33,9 @@ final class WeatherDataTest extends TestCase
 
     public function testNotifyObserversFromDifferentSensorTypes(): void
     {
-        $externalObservable = new WeatherData(WeatherData::EXTERNAL_SENSORS);
-        $internalObservable = new WeatherData(WeatherData::INTERNAL_SENSORS);
-        $observer = new DistinguishingSensorsObserverMock();
+        $externalObservable = new WeatherData();
+        $internalObservable = new WeatherData();
+        $observer = new DistinguishingSensorsObserverMock($internalObservable, $externalObservable);
         $externalObservable->registerObserver($observer, 1);
         $internalObservable->registerObserver($observer, 1);
         ob_start();
