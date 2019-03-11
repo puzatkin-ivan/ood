@@ -9,11 +9,11 @@ class Observable implements ObservableInterface
     {
         $follower = new Follower($observer, $priority);
         $this->followers[$follower->getUid()] = $follower;
+        $this->sortByPriority();
     }
 
     public function notifyObservers(): void
     {
-        $this->sortByPriority();
         $followers = $this->followers;
         /** @var array $observer */
         foreach ($followers as $follower)
