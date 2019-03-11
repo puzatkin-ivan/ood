@@ -1,0 +1,18 @@
+{
+  "require": {
+    "ext-readline": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/",
+      "canvas\\": "src/canvas/",
+      "client\\": "src/client/",
+      "color\\": "src/color/",
+      "designer\\": "src/designer/",
+      "exception\\": "src/exception/",
+      "factory\\": "src/factory/",
+      "painter\\": "src/painter/",
+      "shape\\": "src/shape/"
+    }
+  }
+}
