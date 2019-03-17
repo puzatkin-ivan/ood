@@ -1,6 +1,6 @@
 <?php
 
-require_once './src/common/common.php';
+require_once './vendor/autoload.php';
 
 use app\App;
 

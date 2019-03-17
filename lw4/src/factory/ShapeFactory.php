@@ -46,7 +46,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Rectangle
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createRectangle(array $explodedDescription): Shape
     {
@@ -64,7 +64,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Triangle
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createTriangle(array $explodedDescription): Shape
     {
@@ -83,7 +83,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Ellipse
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createEllipse(array $explodedDescription): Shape
     {
@@ -102,7 +102,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Shape
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createRegularPolygon(array $explodedDescription): Shape
     {

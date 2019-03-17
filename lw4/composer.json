@@ -4,7 +4,7 @@
   },
   "autoload": {
     "psr-4": {
-      "app\\": "src/",
+      "app\\": "src/app",
       "canvas\\": "src/canvas/",
       "client\\": "src/client/",
       "color\\": "src/color/",

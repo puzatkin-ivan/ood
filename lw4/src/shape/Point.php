@@ -34,4 +34,9 @@ class Point
     {
         $this->y = $y;
     }
+
+    public function __clone()
+    {
+        return new Point($this->x, $this->y);
+    }
 }

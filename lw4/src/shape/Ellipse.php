@@ -23,7 +23,7 @@ class Ellipse extends Shape
 
     public function getCenter(): Point
     {
-        return $this->center;
+        return clone $this->center;
     }
 
     public function getHorizontalRadius(): float

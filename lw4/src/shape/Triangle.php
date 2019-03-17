@@ -28,16 +28,16 @@ class Triangle extends Shape
 
     public function getVertex1(): Point
     {
-        return $this->vertices[0];
+        return clone $this->vertices[0];
     }
 
     public function getVertex2(): Point
     {
-        return $this->vertices[1];
+        return clone $this->vertices[1];
     }
 
     public function getVertex3(): Point
     {
-        return $this->vertices[2];
+        return clone $this->vertices[2];
     }
 }
