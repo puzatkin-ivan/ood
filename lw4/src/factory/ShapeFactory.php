@@ -27,7 +27,7 @@ class ShapeFactory implements ShapeFactoryInterface
      */
     public function createShape(string $description): Shape
     {
-        $explodedDescription = explode(' ', $description);
+        $explodedDescription = explode(' ', $this->removeExtraSpaces($description));
         switch (strtolower($explodedDescription[0]))
         {
             case self::RECTANGLE:
@@ -115,5 +115,10 @@ class ShapeFactory implements ShapeFactoryInterface
         $radius = floatval($explodedDescription[4]);
         $color = Color::getColorByType($explodedDescription[5]);
         return new RegularPolygon($center, $radius, $vertexCount, $color);
+    }
+
+    private function removeExtraSpaces(string $line): string
+    {
+        return preg_replace('/^ +| +$|( ) +/m', '$1', $line);
     }
 }

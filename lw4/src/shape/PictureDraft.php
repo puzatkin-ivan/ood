@@ -6,7 +6,7 @@ namespace shape;
 class PictureDraft
 {
     /** @var Shape[] */
-    private $shapes;
+    private $shapes = [];
 
     public function __construct()
     {

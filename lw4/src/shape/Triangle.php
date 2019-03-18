@@ -7,7 +7,7 @@ use canvas\CanvasInterface;
 class Triangle extends Shape
 {
     /** @var Point[] */
-    private $vertices;
+    private $vertices = [];
 
     public function __construct(Point $vertex1, Point $vertex2, Point $vertex3, string $color)
     {
