@@ -7,7 +7,7 @@ use canvas\CanvasInterface;
 class Triangle extends Shape
 {
     /** @var Point[] */
-    private $vertices;
+    private $vertices = [];
 
     public function __construct(Point $vertex1, Point $vertex2, Point $vertex3, string $color)
     {
@@ -28,16 +28,16 @@ class Triangle extends Shape
 
     public function getVertex1(): Point
     {
-        return $this->vertices[0];
+        return clone $this->vertices[0];
     }
 
     public function getVertex2(): Point
     {
-        return $this->vertices[1];
+        return clone $this->vertices[1];
     }
 
     public function getVertex3(): Point
     {
-        return $this->vertices[2];
+        return clone $this->vertices[2];
     }
 }

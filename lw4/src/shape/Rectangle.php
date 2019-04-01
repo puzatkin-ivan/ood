@@ -32,11 +32,11 @@ class Rectangle extends Shape
 
     public function getLeftTop(): Point
     {
-        return $this->leftTop;
+        return clone $this->leftTop;
     }
 
     public function getRightBottom(): Point
     {
-        return $this->rightBottom;
+        return clone $this->rightBottom;
     }
 }

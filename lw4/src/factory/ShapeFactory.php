@@ -27,7 +27,7 @@ class ShapeFactory implements ShapeFactoryInterface
      */
     public function createShape(string $description): Shape
     {
-        $explodedDescription = explode(' ', $description);
+        $explodedDescription = explode(' ', $this->removeExtraSpaces($description));
         switch (strtolower($explodedDescription[0]))
         {
             case self::RECTANGLE:
@@ -46,7 +46,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Rectangle
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createRectangle(array $explodedDescription): Shape
     {
@@ -64,7 +64,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Triangle
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createTriangle(array $explodedDescription): Shape
     {
@@ -83,7 +83,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Ellipse
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createEllipse(array $explodedDescription): Shape
     {
@@ -102,7 +102,7 @@ class ShapeFactory implements ShapeFactoryInterface
     /**
      * @param string[] $explodedDescription
      * @return Shape
-     * @throws IncorrectCountOfArgument
+     * @throws Exception
      */
     private function createRegularPolygon(array $explodedDescription): Shape
     {
@@ -115,5 +115,10 @@ class ShapeFactory implements ShapeFactoryInterface
         $radius = floatval($explodedDescription[4]);
         $color = Color::getColorByType($explodedDescription[5]);
         return new RegularPolygon($center, $radius, $vertexCount, $color);
+    }
+
+    private function removeExtraSpaces(string $line): string
+    {
+        return preg_replace('/^ +| +$|( ) +/m', '$1', $line);
     }
 }

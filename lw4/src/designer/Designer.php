@@ -4,7 +4,6 @@ namespace designer;
 
 use exception\ShapeFactoryException;
 use factory\ShapeFactory;
-use painter\Painter;
 use shape\PictureDraft;
 
 class Designer implements DesignerInterface
@@ -26,13 +25,13 @@ class Designer implements DesignerInterface
         $isProcessed = true;
         while ($isProcessed)
         {
-            $isProcessed = $this->printShapes($pictureDraft);
+            $isProcessed = $this->readShapes($pictureDraft);
         }
 
         return $pictureDraft;
     }
 
-    private function printShapes(PictureDraft $pictureDraft): bool
+    private function readShapes(PictureDraft $pictureDraft): bool
     {
         try
         {

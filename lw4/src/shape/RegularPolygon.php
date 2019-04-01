@@ -31,7 +31,7 @@ class RegularPolygon extends Shape
     {
         $canvas->setColor($this->getColor());
 
-        $corner = $this->getCorner();
+        $angle = $this->getAngle();
 
         $fromX = $this->center->getX() + $this->radius + cos(0);
         $from = new Point($fromX, $this->center->getY());
@@ -40,8 +40,8 @@ class RegularPolygon extends Shape
         $centerY = $this->center->getY();
         for ($index = 1; $index <= $this->vertexCount; ++$index)
         {
-            $toX = $centerX + $this->radius * cos($corner * $index);
-            $toY = $centerY + $this->radius * sin($corner * $index);
+            $toX = $centerX + $this->radius * cos($angle * $index);
+            $toY = $centerY + $this->radius * sin($angle * $index);
             $to = new Point($toX, $toY);
 
             $canvas->drawLine($from, $to);
@@ -56,7 +56,7 @@ class RegularPolygon extends Shape
 
     public function getCenter(): Point
     {
-        return $this->center;
+        return clone $this->center;
     }
 
     public function getRadius(): float
@@ -64,7 +64,7 @@ class RegularPolygon extends Shape
         return $this->radius;
     }
 
-    private function getCorner(): float
+    private function getAngle(): float
     {
         if ($this->vertexCount == 0)
         {
