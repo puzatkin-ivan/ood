@@ -8,5 +8,8 @@
       "GumballMachine\\": ["src/gumball_machine", "tests/gumball_machine"],
       "State\\": ["src/state", "tests/state"]
     }
+  },
+  "require": {
+    "phpunit/php-code-coverage": "^6.1"
   }
 }

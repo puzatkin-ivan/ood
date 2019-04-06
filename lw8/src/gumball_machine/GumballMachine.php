@@ -29,7 +29,7 @@ class GumballMachine implements GumballMachineInterface
         $this->soldOutState = new SoldOutState($this);
         $this->noQuarterState = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
-        $this->state = $this;
+        $this->state = $this->soldState;
         $this->count = $numBalls;
 
         if ($this->count > 0)
@@ -85,17 +85,23 @@ class GumballMachine implements GumballMachineInterface
     public function turnCrank(): void
     {
         $this->state->turnCrank();
+        $this->state->dispense();
     }
 
     public function toString(): string
     {
-        $str = <<<EOF
+        $str = $this->getStringTemplate();
+        $postfix = ($this->count != 1 ? 's' : '');
+        return sprintf($str, $this->count, $postfix, $this->state->ToString());
+    }
+
+    private function getStringTemplate(): string
+    {
+        return <<<EOF
 Mighty Gumball, Inc.
-PHP-enabled Standing Gumball Model #2016 (with state)
+PHP-enabled Standing Gumball Model #2019 (with state)
 Inventory: %d gumball%s
 Machine is %s
 EOF;
-        $postfix = ($this->count != 1 ? 's' : '');
-        return sprintf($str, $this->count, $postfix, $this->state->ToString());
     }
 }

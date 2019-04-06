@@ -26,7 +26,7 @@ class SoldState implements StateInterface
 
     public function turnCrank(): void
     {
-        echo 'Turning twice doesn\'t get you another gumball' . PHP_EOL;
+        echo 'Turning crank will give nothing.' . PHP_EOL;
     }
 
     public function dispense(): void
@@ -34,7 +34,7 @@ class SoldState implements StateInterface
         $this->gumballMachine->releaseBall();
         if ($this->gumballMachine->getBallCount() == 0)
         {
-            echo 'Oops, out of gumballs';
+            echo 'Oops, out of gumballs' . PHP_EOL;
             $this->gumballMachine->setSoldOutState();
         }
         else
