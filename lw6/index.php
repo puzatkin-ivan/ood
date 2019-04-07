@@ -1,1 +1,3 @@
 <?php
+
+\App\App::run();
