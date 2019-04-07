@@ -23,12 +23,12 @@ class Point
         return $this->y;
     }
 
-    public function setX(float $x): float
+    public function setX(float $x): void
     {
         $this->x = $x;
     }
 
-    public function setY(float $y): float
+    public function setY(float $y): void
     {
         $this->y = $y;
     }
