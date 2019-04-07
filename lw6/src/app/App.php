@@ -45,7 +45,8 @@ class App
         $renderer = new ModernGraphicsRenderer();
         $canvasAdapter = new ModernGraphicsRendererAdapter($renderer);
         $canvasPainter = new CanvasPainter($canvasAdapter);
+        $canvasAdapter->beginDraw();
         self::paintPicture($canvasPainter);
-
+        $canvasAdapter->endDraw();
     }
 }

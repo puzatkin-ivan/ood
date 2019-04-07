@@ -7,7 +7,7 @@
             "App\\": ["src/app", "tests/app"],
             "GraphicsLib\\": ["src/graphics_lib", "tests/graphics_lib"],
             "ModernGraphicsLib\\": ["src/modern_graphics_lib", "tests/modern_graphics_lib"],
-            "ShapeDrawingLib\\": ["src/shape_drawing_lib", "tests/shape_drawing_lib"]
+            "ShapeDrawingLib\\": ["src/shape_drawing_lib", "src/shape_drawing_lib/shape", "tests/shape_drawing_lib"]
         }
     },
     "require": {

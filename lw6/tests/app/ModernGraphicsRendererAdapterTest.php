@@ -23,11 +23,11 @@ EOF;
 
         ob_start();
         $renderer = new ModernGraphicsRenderer();
-        $renderer->beginDraw();
         $adapter = new ModernGraphicsRendererAdapter($renderer);
+        $adapter->beginDraw();
         $adapter->moveTo(20, 32);
         $adapter->lineTo(55, 12);
-        $renderer->endDraw();
+        $adapter->endDraw();
         $result = ob_get_clean();
         file_put_contents($this->fileNameWithExpectedResult, $expectedResult);
         file_put_contents($this->fileNameWithActualResult, $result);
