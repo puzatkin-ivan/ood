@@ -33,8 +33,8 @@ class ModernGraphicsRenderer
         }
 
         $result = <<<EOF
-  <line fromX="%d" fromY="%d" toX="%d" toY="%d">
-    <color r="%d" g="%d" b="%d" a="%d" />
+  <line fromX="%.1f" fromY="%.1f" toX="%.1f" toY="%.1f">
+    <color r="%.1f" g="%.1f" b="%.1f" a="%.1f" />
   </line>
 EOF;
 
@@ -45,7 +45,7 @@ EOF;
             $end->getX(),
             $end->getY(),
             $color->getRed(),
-            $color->getRed(),
+            $color->getGreen(),
             $color->getBlue(),
             $color->getAlpha()) . PHP_EOL;
     }

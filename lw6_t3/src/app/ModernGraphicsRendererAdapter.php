@@ -24,9 +24,10 @@ class ModernGraphicsRendererAdapter extends ModernGraphicsRenderer implements Ca
 
     public function setColor(string $color): void
     {
-        $r = 0;
-        $g = 0;
-        $b = 0;
+        $colors = str_split(substr($color, 1), 2);
+        $r = hexdec($colors[0] ?? '');
+        $g = hexdec($colors[1] ?? '');
+        $b = hexdec($colors[2] ?? '');
         $a = 1.0;
         $this->color = new RGBAColor($r, $g, $b, $a);
     }
