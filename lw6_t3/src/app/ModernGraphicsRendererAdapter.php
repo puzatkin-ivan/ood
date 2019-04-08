@@ -6,8 +6,9 @@ use GraphicsLib\CanvasInterface;
 use ModernGraphicsLib\ModernGraphicsRenderer;
 use ModernGraphicsLib\Point;
 use ModernGraphicsLib\RGBAColor;
+use PHPUnit\Runner\Exception;
 
-class ModernGraphicsRendererAdapter extends ModernGraphicsRenderer implements CanvasInterface
+class ModernGraphicsRendererAdapter implements CanvasInterface
 {
     /** @var ModernGraphicsRenderer */
     private $renderer;
@@ -34,17 +35,26 @@ class ModernGraphicsRendererAdapter extends ModernGraphicsRenderer implements Ca
 
     public function beginDraw(): void
     {
-        $this->renderer->beginDraw();
-    }
-
-    public function drawLine(Point $start, Point $end, RGBAColor $color): void
-    {
-        $this->renderer->drawLine($start, $end, $color);
+        try
+        {
+            $this->renderer->beginDraw();
+        }
+        catch (\LogicException $exception)
+        {
+            echo $exception->getMessage();
+        }
     }
 
     public function endDraw(): void
     {
-        $this->renderer->endDraw();
+        try
+        {
+            $this->renderer->endDraw();
+        }
+        catch (\LogicException $exception)
+        {
+            echo $exception->getMessage();
+        }
     }
 
     public function moveTo(int $x, int $y): void
