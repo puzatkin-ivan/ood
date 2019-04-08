@@ -32,11 +32,7 @@ class ModernGraphicsRenderer
             throw new \LogicException('DrawLine is allowed between BeginDraw()/EndDraw() only.');
         }
 
-        $result = <<<EOF
-  <line fromX="%.1f" fromY="%.1f" toX="%.1f" toY="%.1f">
-    <color r="%.1f" g="%.1f" b="%.1f" a="%.1f" />
-  </line>
-EOF;
+        $result = $this->getLineTemplate();
 
         echo sprintf(
             $result,
@@ -58,5 +54,14 @@ EOF;
         }
         echo '</draw>' . PHP_EOL;
         $this->isDrawing = false;
+    }
+
+    private function getLineTemplate(): string
+    {
+        return <<<EOF
+  <line fromX="%.1f" fromY="%.1f" toX="%.1f" toY="%.1f">
+    <color r="%.1f" g="%.1f" b="%.1f" a="%.1f" />
+  </line>
+EOF;
     }
 }
