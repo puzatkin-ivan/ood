@@ -9,12 +9,12 @@ class Canvas implements CanvasInterface
         echo $color . PHP_EOL;
     }
 
-    public function moveTo(int $x, int $y): void
+    public function moveTo(float $x, float $y): void
     {
         echo 'Move To (' . $x . ', ' . $y . ')' . PHP_EOL;
     }
 
-    public function lineTo(int $x, int $y): void
+    public function lineTo(float $x, float $y): void
     {
         echo 'Line To (' . $x . ', ' . $y . ')' . PHP_EOL;
     }

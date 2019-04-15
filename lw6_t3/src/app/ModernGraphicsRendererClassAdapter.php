@@ -5,13 +5,20 @@ namespace App;
 use GraphicsLib\CanvasInterface;
 use ModernGraphicsLib\ModernGraphicsRenderer;
 use ModernGraphicsLib\Point;
+use ModernGraphicsLib\RGBAColor;
 
 class ModernGraphicsRendererClassAdapter extends ModernGraphicsRenderer implements CanvasInterface
 {
-    /** @var string */
+    /** @var RGBAColor */
     private $color;
     /** @var Point */
     private $currentPoint;
+
+    public function __construct()
+    {
+        $this->currentPoint = new Point(0, 0);
+        $this->color = new RGBAColor(0, 0, 0, 1);
+    }
 
     public function setColor(string $color): void
     {
@@ -23,13 +30,13 @@ class ModernGraphicsRendererClassAdapter extends ModernGraphicsRenderer implemen
         $this->color = new RGBAColor($r, $g, $b, $a);
     }
 
-    public function moveTo(int $x, int $y): void
+    public function moveTo(float $x, float $y): void
     {
         $this->currentPoint->setX($x);
         $this->currentPoint->setY($y);
     }
 
-    public function lineTo(int $x, int $y): void
+    public function lineTo(float $x, float $y): void
     {
         $this->drawLine($this->currentPoint, new Point($x, $y), $this->color);
         $this->moveTo($x, $y);

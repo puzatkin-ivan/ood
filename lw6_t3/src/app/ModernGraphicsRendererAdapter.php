@@ -34,36 +34,22 @@ class ModernGraphicsRendererAdapter implements CanvasInterface
     }
 
     public function beginDraw(): void
-    {
-        try
-        {
-            $this->renderer->beginDraw();
-        }
-        catch (\LogicException $exception)
-        {
-            echo $exception->getMessage();
-        }
+    {                                    
+        $this->renderer->beginDraw();
     }
 
     public function endDraw(): void
     {
-        try
-        {
-            $this->renderer->endDraw();
-        }
-        catch (\LogicException $exception)
-        {
-            echo $exception->getMessage();
-        }
+        $this->renderer->endDraw();
     }
 
-    public function moveTo(int $x, int $y): void
+    public function moveTo(float $x, float $y): void
     {
         $this->currentPoint->setX($x);
         $this->currentPoint->setY($y);
     }
 
-    public function lineTo(int $x, int $y): void
+    public function lineTo(float $x, float $y): void
     {
         $this->renderer->drawLine($this->currentPoint, new Point($x, $y), $this->color);
         $this->moveTo($x, $y);
