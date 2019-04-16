@@ -34,7 +34,7 @@ class ModernGraphicsRendererAdapter implements CanvasInterface
     }
 
     public function beginDraw(): void
-    {                                    
+    {
         $this->renderer->beginDraw();
     }
 

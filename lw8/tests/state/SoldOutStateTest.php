@@ -5,7 +5,7 @@ namespace State;
 use GumballMachine\GumballMachine;
 use PHPUnit\Framework\TestCase;
 
-class SoldStateTest extends TestCase
+class SoldOutStateTest extends TestCase
 {
     /** @var GumballMachine */
     private $gm;
@@ -16,23 +16,22 @@ class SoldStateTest extends TestCase
 
     public function testStateToString(): void
     {
-        $state = new SoldState($this->gm);
-
-        $expectedResult = 'delivering a gumball';
+        $state = new SoldOutState($this->gm);
         $actualResult = $state->ToString();
 
+        $expectedResult = 'sold out';
         $this->assertEquals($expectedResult, $actualResult);
     }
 
     public function testInsertQuarter(): void
     {
-        $expectedResult = 'Please wait, we\'re already giving you a gumball' . PHP_EOL;
-        $state = new SoldState($this->gm);
+        $state = new SoldOutState($this->gm);
 
         ob_start();
         $state->insertQuarter();
         $actualResult = ob_get_clean();
 
+        $expectedResult = 'You can\'t insert a quarter, the machine is sold out' . PHP_EOL;
         file_put_contents($this->expectedFileName, $expectedResult);
         file_put_contents($this->actualFileName, $actualResult);
 
@@ -41,13 +40,13 @@ class SoldStateTest extends TestCase
 
     public function testEjectQuarter(): void
     {
-        $expectedResult = 'Sorry you already turned the crank' . PHP_EOL;
-        $state = new SoldState($this->gm);
+        $state = new SoldOutState($this->gm);
 
         ob_start();
         $state->ejectQuarter();
         $actualResult = ob_get_clean();
 
+        $expectedResult = 'You can\'t eject, you haven\'t inserted a quarter yet' . PHP_EOL;
         file_put_contents($this->expectedFileName, $expectedResult);
         file_put_contents($this->actualFileName, $actualResult);
 
@@ -56,61 +55,28 @@ class SoldStateTest extends TestCase
 
     public function testTurnCrank(): void
     {
-        $expectedResult = 'Turning crank will give nothing.' . PHP_EOL;
-        $state = new SoldState($this->gm);
+        $state = new SoldOutState($this->gm);
 
         ob_start();
         $state->turnCrank();
         $actualResult = ob_get_clean();
 
+        $expectedResult = 'You turned but there\'s no gumballs' . PHP_EOL;
         file_put_contents($this->expectedFileName, $expectedResult);
         file_put_contents($this->actualFileName, $actualResult);
 
         $this->assertFileEquals($this->expectedFileName, $this->actualFileName);
     }
 
-    public function testDispenseWhenGumballMachineIsEmpty(): void
+    public function testDispense(): void
     {
-        $expectedResult = 'Oops, out of gumballs' . PHP_EOL;
-        $state = new SoldState($this->gm);
+        $state = new SoldOutState($this->gm);
 
         ob_start();
         $state->dispense();
         $actualResult = ob_get_clean();
 
-        file_put_contents($this->expectedFileName, $expectedResult);
-        file_put_contents($this->actualFileName, $actualResult);
-
-        $this->assertFileEquals($this->expectedFileName, $this->actualFileName);
-    }
-
-    public function testDispenseWhenGumballMachineHasOneGumball(): void
-    {
-        $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
-        $expectedResult .=  'Oops, out of gumballs' . PHP_EOL;
-        $gm = new GumballMachine(1);
-        $state = new SoldState($gm);
-
-        ob_start();
-        $state->dispense();
-        $actualResult = ob_get_clean();
-
-        file_put_contents($this->expectedFileName, $expectedResult);
-        file_put_contents($this->actualFileName, $actualResult);
-
-        $this->assertFileEquals($this->expectedFileName, $this->actualFileName);
-    }
-
-    public function testDispenseWhenGumballMachineHasMoreOneGumball(): void
-    {
-        $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
-        $gm = new GumballMachine(2);
-        $state = new SoldState($gm);
-
-        ob_start();
-        $state->dispense();
-        $actualResult = ob_get_clean();
-
+        $expectedResult = 'No gumball dispensed' . PHP_EOL;
         file_put_contents($this->expectedFileName, $expectedResult);
         file_put_contents($this->actualFileName, $actualResult);
 
