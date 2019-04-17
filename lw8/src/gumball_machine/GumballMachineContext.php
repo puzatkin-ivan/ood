@@ -21,7 +21,9 @@ class GumballMachineContext implements GumballMachineContextInterface
     /** @var State */
     private $state;
     /** @var int */
-    private $count;
+    private $ballCount;
+    /** @var int */
+    private $quarterCount;
 
     public function __construct(int $numBalls)
     {
@@ -30,9 +32,10 @@ class GumballMachineContext implements GumballMachineContextInterface
         $this->noQuarterState = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
         $this->state = $this->soldState;
-        $this->count = $numBalls;
+        $this->ballCount = $numBalls;
+        $this->quarterCount = 0;
 
-        if ($this->count > 0)
+        if ($this->ballCount > 0)
         {
             $this->state = $this->noQuarterState;
         }
@@ -40,16 +43,31 @@ class GumballMachineContext implements GumballMachineContextInterface
 
     public function releaseBall(): void
     {
-        if ($this->count != 0)
+        if ($this->ballCount != 0 && $this->quarterCount != 0)
         {
             echo 'A gumball comes rolling out the slot...' . PHP_EOL;
-            --$this->count;
+            --$this->ballCount;
+            --$this->quarterCount;
         }
     }
 
     public function getBallCount(): int
     {
-        return $this->count;
+        return $this->ballCount;
+    }
+
+    public function getQuarterCount(): int
+    {
+        return $this->quarterCount;
+    }
+
+    public function addQuarter(): void
+    {
+        if ($this->quarterCount == 5)
+        {
+            throw new \OutOfRangeException("Gumball machine can hold up to 5 quarter.");
+        }
+        ++$this->quarterCount;
     }
 
     public function setSoldOutState(): void
@@ -91,8 +109,8 @@ class GumballMachineContext implements GumballMachineContextInterface
     public function toString(): string
     {
         $str = $this->getStringTemplate();
-        $postfix = ($this->count != 1 ? 's' : '');
-        return sprintf($str, $this->count, $postfix, $this->state->ToString());
+        $postfix = ($this->ballCount != 1 ? 's' : '');
+        return sprintf($str, $this->ballCount, $postfix, $this->state->ToString());
     }
 
     private function getStringTemplate(): string

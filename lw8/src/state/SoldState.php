@@ -2,16 +2,16 @@
 
 namespace State;
 
-use GumballMachine\GumballMachineContextInterface as GumballMachine;
+use GumballMachine\GumballMachineContextInterface as GumballMachineContext;
 
 class SoldState implements StateInterface
 {
-    /** @var GumballMachine */
-    private $gumballMachine;
+    /** @var GumballMachineContext */
+    private $gumballMachineContext;
 
-    public function __construct(GumballMachine $gumballMachine)
+    public function __construct(GumballMachineContext $gumballMachineContext)
     {
-        $this->gumballMachine = $gumballMachine;
+        $this->gumballMachineContext = $gumballMachineContext;
     }
 
     public function insertQuarter(): void
@@ -31,15 +31,19 @@ class SoldState implements StateInterface
 
     public function dispense(): void
     {
-        $this->gumballMachine->releaseBall();
-        if ($this->gumballMachine->getBallCount() == 0)
+        $this->gumballMachineContext->releaseBall();
+        if ($this->gumballMachineContext->getBallCount() == 0)
         {
             echo 'Oops, out of gumballs' . PHP_EOL;
-            $this->gumballMachine->setSoldOutState();
+            $this->gumballMachineContext->setSoldOutState();
+        }
+        else if ($this->gumballMachineContext->getQuarterCount() == 0)
+        {
+            $this->gumballMachineContext->setNoQuarterState();
         }
         else
         {
-            $this->gumballMachine->setNoQuarterState();
+            $this->gumballMachineContext->setHasQuarterState();
         }
     }
 

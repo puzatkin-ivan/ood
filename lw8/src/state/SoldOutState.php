@@ -2,16 +2,16 @@
 
 namespace State;
 
-use GumballMachine\GumballMachineContextInterface as GumballMachine;
+use GumballMachine\GumballMachineContextInterface as GumballMachineContext;
 
 class SoldOutState implements StateInterface
 {
-    /** @var GumballMachine */
-    private $gumballMachine;
+    /** @var GumballMachineContext */
+    private $gumballMachineContext;
 
-    public function __construct(GumballMachine $gumballMachine)
+    public function __construct(GumballMachineContext $gumballMachineContext)
     {
-        $this->gumballMachine = $gumballMachine;
+        $this->gumballMachineContext = $gumballMachineContext;
     }
 
     public function insertQuarter(): void

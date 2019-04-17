@@ -89,6 +89,7 @@ class SoldStateTest extends TestCase
         $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedResult .=  'Oops, out of gumballs' . PHP_EOL;
         $gm = new GumballMachineContext(1);
+        $gm->addQuarter();
         $state = new SoldState($gm);
 
         ob_start();
@@ -105,6 +106,7 @@ class SoldStateTest extends TestCase
     {
         $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
         $gm = new GumballMachineContext(2);
+        $gm->addQuarter();
         $state = new SoldState($gm);
 
         ob_start();

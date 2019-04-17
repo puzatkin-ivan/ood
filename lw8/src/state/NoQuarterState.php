@@ -2,22 +2,30 @@
 
 namespace State;
 
-use GumballMachine\GumballMachineContextInterface as GumballMachine;
+use GumballMachine\GumballMachineContextInterface as GumballMachineContext;
 
 class NoQuarterState implements StateInterface
 {
-    /** @var GumballMachine */
-    private $gumballMachine;
+    /** @var GumballMachineContext */
+    private $gumballMachineContext;
 
-    public function __construct(GumballMachine $gumballMachine)
+    public function __construct(GumballMachineContext $gumballMachineContext)
     {
-        $this->gumballMachine = $gumballMachine;
+        $this->gumballMachineContext = $gumballMachineContext;
     }
 
     public function insertQuarter(): void
     {
-        echo 'You inserted a quarter' . PHP_EOL;
-        $this->gumballMachine->setHasQuarterState();
+        try
+        {
+            $this->gumballMachineContext->addQuarter();
+            echo 'You inserted a quarter' . PHP_EOL;
+        }
+        catch (\OutOfRangeException $ex)
+        {
+            echo $ex->getMessage() . PHP_EOL;
+        }
+        $this->gumballMachineContext->setHasQuarterState();
     }
 
     public function ejectQuarter(): void
