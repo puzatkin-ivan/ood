@@ -3,7 +3,7 @@
 namespace GumballMachine;
 
 
-interface GumballMachineInterface
+interface GumballMachineContextInterface
 {
     public function releaseBall(): void;
     public function getBallCount(): int;

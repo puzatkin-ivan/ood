@@ -2,7 +2,7 @@
 
 namespace State;
 
-use GumballMachine\GumballMachineInterface as GumballMachine;
+use GumballMachine\GumballMachineContextInterface as GumballMachine;
 
 class SoldOutState implements StateInterface
 {

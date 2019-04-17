@@ -2,12 +2,12 @@
 
 namespace State;
 
-use GumballMachine\GumballMachine;
+use GumballMachine\GumballMachineContext;
 use PHPUnit\Framework\TestCase;
 
 class SoldStateTest extends TestCase
 {
-    /** @var GumballMachine */
+    /** @var GumballMachineContext */
     private $gm;
     /** @var string */
     private $expectedFileName;
@@ -88,7 +88,7 @@ class SoldStateTest extends TestCase
     {
         $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedResult .=  'Oops, out of gumballs' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new GumballMachineContext(1);
         $state = new SoldState($gm);
 
         ob_start();
@@ -104,7 +104,7 @@ class SoldStateTest extends TestCase
     public function testDispenseWhenGumballMachineHasMoreOneGumball(): void
     {
         $expectedResult = 'A gumball comes rolling out the slot...' . PHP_EOL;
-        $gm = new GumballMachine(2);
+        $gm = new GumballMachineContext(2);
         $state = new SoldState($gm);
 
         ob_start();
@@ -119,7 +119,7 @@ class SoldStateTest extends TestCase
 
     protected function setUp()
     {
-        $this->gm = new GumballMachine(0);
+        $this->gm = new GumballMachineContext(0);
         $this->expectedFileName = uniqid() . '.txt';
         $this->actualFileName = uniqid() . '.txt';
         parent::setUp();

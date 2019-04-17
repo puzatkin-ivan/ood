@@ -2,12 +2,12 @@
 
 namespace State;
 
-use GumballMachine\GumballMachine;
+use GumballMachine\GumballMachineContext;
 use PHPUnit\Framework\TestCase;
 
 class SoldOutStateTest extends TestCase
 {
-    /** @var GumballMachine */
+    /** @var GumballMachineContext */
     private $gm;
     /** @var string */
     private $expectedFileName;
@@ -85,7 +85,7 @@ class SoldOutStateTest extends TestCase
 
     protected function setUp()
     {
-        $this->gm = new GumballMachine(0);
+        $this->gm = new GumballMachineContext(0);
         $this->expectedFileName = uniqid() . '.txt';
         $this->actualFileName = uniqid() . '.txt';
         parent::setUp();
