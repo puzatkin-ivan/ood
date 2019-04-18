@@ -12,9 +12,9 @@ class GumballMachine
         $this->context = new GumballMachineContext($count);
     }
 
-    public function getBallCount(): void
+    public function getBallCount(): int
     {
-        $this->context->getBallCount();
+        return $this->context->getBallCount();
     }
 
     public function insertQuarter(): void
