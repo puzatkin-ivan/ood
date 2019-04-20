@@ -77,6 +77,7 @@ class GumballMachineContext implements GumballMachineContextInterface
 
     public function setNoQuarterState(): void
     {
+        $this->quarterCount = 0;
         $this->state = $this->noQuarterState;
     }
 
