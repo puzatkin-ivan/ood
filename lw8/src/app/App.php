@@ -8,7 +8,7 @@ class App
 {
     public function run(): void
     {
-        $gm = new GumballMachine(5);
+        $gm = new GumballMachine(10);
 
         echo $gm->toString() . PHP_EOL;
 

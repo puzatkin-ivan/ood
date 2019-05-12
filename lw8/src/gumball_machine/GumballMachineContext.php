@@ -70,6 +70,15 @@ class GumballMachineContext implements GumballMachineContextInterface
         ++$this->quarterCount;
     }
 
+    public function resetQuarters(): void
+    {
+        if ($this->quarterCount != 0)
+        {
+            echo "Reset {$this->quarterCount} quarter" . PHP_EOL;
+            $this->quarterCount = 0;
+        }
+    }
+
     public function setSoldOutState(): void
     {
         $this->state = $this->soldOutState;

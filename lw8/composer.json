@@ -6,6 +6,8 @@
     "psr-4": {
       "App\\": ["src/app", "tests/app"],
       "GumballMachine\\": ["src/gumball_machine", "tests/gumball_machine"],
+      "NaiveGumballMachine\\": ["src/naive_gumball_machine", "tests/naive_gumball_machine"],
+      "NaiveGumballMachineState\\": ["src/naive_gumball_machine/state"],
       "State\\": ["src/state", "tests/state"]
     }
   },

@@ -13,4 +13,5 @@ interface GumballMachineContextInterface
     public function setSoldState(): void;
     public function setHasQuarterState(): void;
     public function addQuarter(): void;
+    public function resetQuarters(): void;
 }

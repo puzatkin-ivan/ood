@@ -1,10 +1,10 @@
 <?php
 
-namespace GumballMachine;
+namespace NaiveGumballMachine;
 
 use PHPUnit\Framework\TestCase;
 
-class GumballMachineTest extends TestCase
+class NaiveGumballMachineTest extends TestCase
 {
     /** @var string */
     private $expectedFileName;
@@ -13,7 +13,7 @@ class GumballMachineTest extends TestCase
 
     public function testGumballMachineWithZeroBall(): void
     {
-        $gm = new GumballMachine(0);
+        $gm = new NaiveGumballMachine(0);
         $this->assertEquals($gm->getBallCount(), 0);
     }
 
@@ -25,7 +25,7 @@ PHP-enabled Standing Gumball Model #2019 (with state)
 Inventory: 0 gumballs
 Machine is delivering a gumball
 EOF;
-        $gm = new GumballMachine(0);
+        $gm = new NaiveGumballMachine(0);
         $this->executeTestCase(function () use ($gm) {
             echo $gm->toString();
         }, $expectedOutput);
@@ -35,7 +35,7 @@ EOF;
     {
         $expectedOutput = 'Turning crank will give nothing.' . PHP_EOL;
         $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
-        $gm = new GumballMachine(0);
+        $gm = new NaiveGumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->turnCrank();
         }, $expectedOutput);
@@ -44,7 +44,7 @@ EOF;
     public function testInsertQuarterWhenGumballMachineIsEmpty(): void
     {
         $expectedOutput = 'Please wait, we\'re already giving you a gumball' . PHP_EOL;
-        $gm = new GumballMachine(0);
+        $gm = new NaiveGumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
         }, $expectedOutput);
@@ -53,7 +53,7 @@ EOF;
     public function testEjectQuarterWhenGumballMachineIsEmpty(): void
     {
         $expectedOutput = 'Sorry you already turned the crank' . PHP_EOL;
-        $gm = new GumballMachine(0);
+        $gm = new NaiveGumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->ejectQuarter();
         }, $expectedOutput);
@@ -68,7 +68,7 @@ PHP-enabled Standing Gumball Model #2019 (with state)
 Inventory: {$count} gumballs
 Machine is waiting for quarter
 EOF;
-        $gm = new GumballMachine($count);
+        $gm = new NaiveGumballMachine($count);
         $this->executeTestCase(function () use ($gm) {
             echo $gm->toString();
         }, $expectedOutput);
@@ -78,7 +78,7 @@ EOF;
     {
         $expectedOutput = 'You turned but there\'s no quarter' . PHP_EOL;
         $expectedOutput .= 'You need to pay first' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->turnCrank();
         }, $expectedOutput);
@@ -87,7 +87,7 @@ EOF;
     public function testImpossibleEjectQuarterWhenGumballMachineIsNotEmptyAndDidNotInsertedQuarter(): void
     {
         $expectedOutput = 'You haven\'t inserted a quarter' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->ejectQuarter();
         }, $expectedOutput);
@@ -97,7 +97,7 @@ EOF;
     {
         $expectedOutput = 'You inserted a quarter' . PHP_EOL;
         $expectedOutput .= 'You inserted a quarter' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->insertQuarter();
@@ -109,7 +109,7 @@ EOF;
         $expectedOutput = 'You inserted a quarter' . PHP_EOL;
         $expectedOutput .= 'Quarter returned' . PHP_EOL;
         $expectedOutput .= 'You haven\'t inserted a quarter' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->ejectQuarter();
@@ -121,7 +121,7 @@ EOF;
     {
         $expectedOutput = 'You turned but there\'s no quarter' . PHP_EOL;
         $expectedOutput .= 'You need to pay first' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->turnCrank();
         }, $expectedOutput);
@@ -135,7 +135,7 @@ EOF;
         $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
         $expectedOutput .= 'You turned but there\'s no gumballs' . PHP_EOL;
         $expectedOutput .= 'No gumball dispensed' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();
@@ -150,7 +150,7 @@ EOF;
         $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedOutput .= 'You turned but there\'s no quarter' . PHP_EOL;
         $expectedOutput .= 'You need to pay first' . PHP_EOL;
-        $gm = new GumballMachine(2);
+        $gm = new NaiveGumballMachine(2);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();
@@ -165,7 +165,7 @@ EOF;
         $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
         $expectedOutput .= 'You can\'t insert a quarter, the machine is sold out' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();
@@ -182,7 +182,7 @@ EOF;
         $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
         $expectedOutput .= 'Reset 1 quarter' . PHP_EOL;
         $expectedOutput .= 'You can\'t insert a quarter, the machine is sold out' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->insertQuarter();
@@ -197,7 +197,7 @@ EOF;
         $expectedOutput .= 'You turned...' . PHP_EOL;
         $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedOutput .= 'You inserted a quarter' . PHP_EOL;
-        $gm = new GumballMachine(2);
+        $gm = new NaiveGumballMachine(2);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();
@@ -212,7 +212,7 @@ EOF;
         $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
         $expectedOutput .= 'You can\'t eject, you haven\'t inserted a quarter yet' . PHP_EOL;
-        $gm = new GumballMachine(1);
+        $gm = new NaiveGumballMachine(1);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();
@@ -226,7 +226,7 @@ EOF;
         $expectedOutput .= 'You turned...' . PHP_EOL;
         $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
         $expectedOutput .= 'You haven\'t inserted a quarter' . PHP_EOL;
-        $gm = new GumballMachine(2);
+        $gm = new NaiveGumballMachine(2);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
             $gm->turnCrank();

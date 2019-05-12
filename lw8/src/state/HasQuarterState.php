@@ -16,7 +16,15 @@ class HasQuarterState implements StateInterface
 
     public function insertQuarter(): void
     {
-        echo 'You can\'t insert another quarter' . PHP_EOL;
+        try
+        {
+            $this->gumballMachineContext->addQuarter();
+            echo 'You inserted a quarter' . PHP_EOL;
+        }
+        catch (\OutOfRangeException $ex)
+        {
+            echo $ex->getMessage() . PHP_EOL;
+        }
     }
 
     public function ejectQuarter(): void

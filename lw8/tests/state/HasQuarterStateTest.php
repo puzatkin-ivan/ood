@@ -31,7 +31,32 @@ class HasQuarterStateTest extends TestCase
         $state->insertQuarter();
         $actualResult = ob_get_clean();
 
-        $expectedResult =  'You can\'t insert another quarter' . PHP_EOL;
+        $expectedResult =  'You inserted a quarter' . PHP_EOL;
+        file_put_contents($this->expectedFileName, $expectedResult);
+        file_put_contents($this->actualFileName, $actualResult);
+
+        $this->assertFileEquals($this->expectedFileName, $this->actualFileName);
+    }
+
+    public function testInsertFiveQuarter(): void
+    {
+        $state = new HasQuarterState($this->gm);
+
+        ob_start();
+        $state->insertQuarter();
+        $state->insertQuarter();
+        $state->insertQuarter();
+        $state->insertQuarter();
+        $state->insertQuarter();
+        $state->insertQuarter();
+        $actualResult = ob_get_clean();
+
+        $expectedResult = 'You inserted a quarter' . PHP_EOL;
+        $expectedResult .= 'You inserted a quarter' . PHP_EOL;
+        $expectedResult .= 'You inserted a quarter' . PHP_EOL;
+        $expectedResult .= 'You inserted a quarter' . PHP_EOL;
+        $expectedResult .= 'You inserted a quarter' . PHP_EOL;
+        $expectedResult .= 'Gumball machine can hold up to 5 quarter.' . PHP_EOL;
         file_put_contents($this->expectedFileName, $expectedResult);
         file_put_contents($this->actualFileName, $actualResult);
 

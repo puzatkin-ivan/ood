@@ -35,6 +35,7 @@ class SoldState implements StateInterface
         if ($this->gumballMachineContext->getBallCount() == 0)
         {
             echo 'Oops, out of gumballs' . PHP_EOL;
+            $this->gumballMachineContext->resetQuarters();
             $this->gumballMachineContext->setSoldOutState();
         }
         else if ($this->gumballMachineContext->getQuarterCount() == 0)
