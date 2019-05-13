@@ -17,6 +17,6 @@ class GetBallCountCommand implements CommandInterface
 
     public function execute(array $commandArgs): void
     {
-        echo $this->gumballMachine->getBallCount();
+        echo $this->gumballMachine->getBallCount() . PHP_EOL;
     }
 }

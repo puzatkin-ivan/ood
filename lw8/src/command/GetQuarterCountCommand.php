@@ -6,7 +6,7 @@ use GumballMachine\GumballMachineInterface;
 
 class GetQuarterCountCommand implements CommandInterface
 {
-    public const COMMAND_NAME = 'get_ball_count';
+    public const COMMAND_NAME = 'get_quarter_count';
     /** @var GumballMachineInterface */
     private $gumballMachine;
 
@@ -17,6 +17,6 @@ class GetQuarterCountCommand implements CommandInterface
 
     public function execute(array $commandArgs): void
     {
-        echo $this->gumballMachine->getQuarterCount();
+        echo $this->gumballMachine->getQuarterCount() . PHP_EOL;
     }
 }
