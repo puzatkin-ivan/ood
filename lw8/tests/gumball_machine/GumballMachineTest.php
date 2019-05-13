@@ -23,7 +23,7 @@ class GumballMachineTest extends TestCase
 Mighty Gumball, Inc.
 PHP-enabled Standing Gumball Model #2019 (with state)
 Inventory: 0 gumballs
-Machine is delivering a gumball
+Machine is sold out
 EOF;
         $gm = new GumballMachine(0);
         $this->executeTestCase(function () use ($gm) {
@@ -33,8 +33,8 @@ EOF;
 
     public function testTurnCrankWhenGumballMachineIsEmpty(): void
     {
-        $expectedOutput = 'Turning crank will give nothing.' . PHP_EOL;
-        $expectedOutput .= 'Oops, out of gumballs' . PHP_EOL;
+        $expectedOutput = 'You turned but there\'s no gumballs' . PHP_EOL;
+        $expectedOutput .= 'No gumball dispensed' . PHP_EOL;
         $gm = new GumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->turnCrank();
@@ -43,7 +43,7 @@ EOF;
 
     public function testInsertQuarterWhenGumballMachineIsEmpty(): void
     {
-        $expectedOutput = 'Please wait, we\'re already giving you a gumball' . PHP_EOL;
+        $expectedOutput = 'You can\'t insert a quarter, the machine is sold out' . PHP_EOL;
         $gm = new GumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->insertQuarter();
@@ -52,7 +52,7 @@ EOF;
 
     public function testEjectQuarterWhenGumballMachineIsEmpty(): void
     {
-        $expectedOutput = 'Sorry you already turned the crank' . PHP_EOL;
+        $expectedOutput = 'You can\'t eject, you haven\'t inserted a quarter yet' . PHP_EOL;
         $gm = new GumballMachine(0);
         $this->executeTestCase(function() use ($gm) {
             $gm->ejectQuarter();

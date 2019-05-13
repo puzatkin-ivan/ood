@@ -31,7 +31,7 @@ class GumballMachineContext implements GumballMachineContextInterface
         $this->soldOutState = new SoldOutState($this);
         $this->noQuarterState = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
-        $this->state = $this->soldState;
+        $this->state = $this->soldOutState;
         $this->ballCount = $numBalls;
         $this->quarterCount = 0;
 

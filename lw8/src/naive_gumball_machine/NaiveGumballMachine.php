@@ -7,13 +7,16 @@ use NaiveGumballMachine\State\StateEnum;
 class NaiveGumballMachine
 {
     /** @var int */
+    private $state;
+    /** @var int */
     private $ballCount;
     /** @var int */
-    private $state;
+    private $quarterCount;
 
     public function __construct(int $ballCount)
     {
         $this->ballCount = $ballCount;
+        $this->quarterCount = 0;
         $this->state = ($this->ballCount > 0) ? StateEnum::NO_QUARTER : StateEnum::SOLD_OUT;
     }
 
@@ -34,7 +37,8 @@ class NaiveGumballMachine
                 $this->state = StateEnum::HAS_QUARTER;
                 break;
             case StateEnum::HAS_QUARTER:
-                echo "You can't insert another quarter" . PHP_EOL;
+                $this->addQuarter();
+                echo "You inserted a quarter" . PHP_EOL;
                 break;
             case StateEnum::SOLD:
                 echo "Please wait, we're already giving you a gumball" . PHP_EOL;
@@ -53,6 +57,7 @@ class NaiveGumballMachine
                 echo "You haven't inserted a quarter" . PHP_EOL;
                 break;
             case StateEnum::HAS_QUARTER:
+                $this->quarterCount = 0;
                 echo "Quarter returned" . PHP_EOL;
                 $this->state = StateEnum::NO_QUARTER;
                 break;
@@ -75,12 +80,12 @@ class NaiveGumballMachine
             case StateEnum::HAS_QUARTER:
                 echo "You turned..." . PHP_EOL;
                 $this->state = StateEnum::SOLD;
-                $this->dispense();
                 break;
             case StateEnum::SOLD:
                 echo "Turning twice doesn't get you another gumball" . PHP_EOL;
                 break;
         }
+        $this->dispense();
     }
 
     public function refill(int $numBalls): void
@@ -91,7 +96,7 @@ class NaiveGumballMachine
 
     /**
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     public function toString(): string
     {
@@ -113,7 +118,7 @@ EOF;
 
     /**
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     private function stateToString(): string
     {
@@ -137,11 +142,12 @@ EOF;
         switch ($this->state)
         {
             case StateEnum::SOLD:
-                echo 'A gumball comes rolling out the slot' . PHP_EOL;
+                echo 'A gumball comes rolling out the slot...' . PHP_EOL;
                 --$this->ballCount;
                 if ($this->ballCount == 0)
                 {
                     echo 'Oops, out of gumballs' . PHP_EOL;
+                    $this->resetQuarters();
                     $this->state = StateEnum::SOLD_OUT;
                 }
                 else
@@ -158,5 +164,23 @@ EOF;
                 break;
 
         }
+    }
+
+    private function resetQuarters(): void
+    {
+        if ($this->quarterCount != 0)
+        {
+            echo "Reset {$this->quarterCount} quarter" . PHP_EOL;
+            $this->quarterCount = 0;
+        }
+    }
+
+    private function addQuarter(): void
+    {
+        if ($this->quarterCount == 5)
+        {
+            throw new \OutOfRangeException("Gumball machine can hold up to 5 quarter.");
+        }
+        ++$this->quarterCount;
     }
 }
