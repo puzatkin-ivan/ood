@@ -54,12 +54,11 @@ class MenuTest extends TestCase
         try
         {
             $menu->execute(ExitCommand::COMMAND_NAME);
+            $this->assertTrue($menu->isExit());
         }
         catch (\Exception $ex)
         {
             $this->fail();
         }
-
-        $this->assertTrue($menu->isExit());
     }
 }
