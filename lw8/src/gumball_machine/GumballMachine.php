@@ -2,7 +2,7 @@
 
 namespace GumballMachine;
 
-class GumballMachine
+class GumballMachine implements GumballMachineInterface
 {
     /** @var GumballMachineContextInterface */
     private $context;
