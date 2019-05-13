@@ -2,15 +2,15 @@
 
 namespace Command;
 
-use GumballMachine\GumballMachine;
+use GumballMachine\GumballMachineInterface;
 
 class TurnCrankCommand implements CommandInterface
 {
     public const COMMAND_NAME = 'turn_crank';
-    /** @var GumballMachine */
+    /** @var GumballMachineInterface */
     private $gm;
 
-    public function __construct(GumballMachine $gm)
+    public function __construct(GumballMachineInterface $gm)
     {
         $this->gm = $gm;
     }

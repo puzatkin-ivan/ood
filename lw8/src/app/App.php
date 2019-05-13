@@ -3,6 +3,7 @@
 namespace App;
 
 use Command\EjectQuarterCommand;
+use Command\Exception\CommandException;
 use Command\ExitCommand;
 use Command\InsertQuarterCommand;
 use Command\RefillBallCommand;
@@ -52,7 +53,20 @@ class App
     {
         $menu = new Menu(new GumballMachine(0));
         $this->addCommandInMenu($menu);
-        $menu->execute();
+        
+        while (!$menu->isExit())
+        {
+            try
+            {
+                $commandStr = readline('> ');
+                $menu->execute($commandStr);
+            }
+            catch (CommandException $exception)
+            {
+                echo $exception->getMessage() . PHP_EOL;
+                echo $menu->showInstructions();
+            }
+        }
     }
 
     private function addCommandInMenu(Menu $menu): void

@@ -8,7 +8,7 @@
       "GumballMachine\\": ["src/gumball_machine", "tests/gumball_machine"],
       "Command\\": ["src/command", "tests/command"],
       "Command\\Exception\\": ["src/command/exception"],
-      "Menu\\": ["src/menu"],
+      "Menu\\": ["src/menu", 'tests/menu'],
       "NaiveGumballMachine\\": ["src/naive_gumball_machine", "tests/naive_gumball_machine"],
       "NaiveGumballMachineState\\": ["src/naive_gumball_machine/state"],
       "State\\": ["src/state", "tests/state"]

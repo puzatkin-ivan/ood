@@ -2,21 +2,21 @@
 
 namespace Command;
 
-use Menu\Menu;
+use Menu\MenuInterface;
 
 class ExitCommand implements CommandInterface
 {
     public const COMMAND_NAME = 'exit';
-    /** @var Menu */
+    /** @var MenuInterface */
     private $menu;
 
-    public function __construct(Menu $menu)
+    public function __construct(MenuInterface $menu)
     {
         $this->menu = $menu;
     }
 
     public function execute(array $commandArgs): void
     {
-        $this->menu->gate();
+        $this->menu->exit();
     }
 }
