@@ -32,6 +32,11 @@ class GumballMachine
         $this->context->turnCrank();
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        $this->context->refillBall($numBalls);
+    }
+
     public function toString(): string
     {
         return $this->context->toString();

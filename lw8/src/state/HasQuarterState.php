@@ -44,6 +44,13 @@ class HasQuarterState implements StateInterface
         echo 'No gumball dispensed' . PHP_EOL;
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        $this->gumballMachineContext->addBall($numBalls);
+        $ballCount = $this->gumballMachineContext->getBallCount();
+        echo "You refill {$numBalls} ball. Ball count: {$ballCount}." . PHP_EOL;
+    }
+
     public function ToString(): string
     {
         return 'waiting for turn of crank';

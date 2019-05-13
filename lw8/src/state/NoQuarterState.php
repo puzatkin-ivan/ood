@@ -43,6 +43,13 @@ class NoQuarterState implements StateInterface
         echo 'You need to pay first' . PHP_EOL;
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        $this->gumballMachineContext->addBall($numBalls);
+        $ballCount = $this->gumballMachineContext->getBallCount();
+        echo "You refill {$numBalls} ball. Ball count: {$ballCount}." . PHP_EOL;
+    }
+
     public function ToString(): string
     {
         return 'waiting for quarter';

@@ -34,6 +34,23 @@ class SoldOutState implements StateInterface
         echo 'No gumball dispensed' . PHP_EOL;
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        $this->gumballMachineContext->addBall($numBalls);
+        $ballCount = $this->gumballMachineContext->getBallCount();
+        echo "You refill {$numBalls} ball. Ball count: {$ballCount}." . PHP_EOL;
+
+        $quarterCount = $this->gumballMachineContext->getQuarterCount();
+        if ($quarterCount == 0)
+        {
+            $this->gumballMachineContext->setNoQuarterState();
+        }
+        else
+        {
+            $this->gumballMachineContext->setHasQuarterState();
+        }
+    }
+
     public function ToString(): string
     {
         return 'sold out';

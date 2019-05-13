@@ -116,6 +116,16 @@ class GumballMachineContext implements GumballMachineContextInterface
         $this->state->dispense();
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        $this->state->refillBall($numBalls);
+    }
+
+    public function addBall(int $numBalls): void
+    {
+        $this->ballCount += $numBalls;
+    }
+
     public function toString(): string
     {
         $str = $this->getStringTemplate();

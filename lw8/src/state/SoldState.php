@@ -48,6 +48,11 @@ class SoldState implements StateInterface
         }
     }
 
+    public function refillBall(int $numBalls): void
+    {
+        echo 'You can\'t refill ball.' . PHP_EOL;
+    }
+
     public function ToString(): string
     {
         return 'delivering a gumball';

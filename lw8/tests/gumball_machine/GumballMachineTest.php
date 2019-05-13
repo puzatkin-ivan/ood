@@ -234,6 +234,62 @@ EOF;
         }, $expectedOutput);
     }
 
+    public function testRefillBallWhenTurnedOnGumballMachine(): void
+    {
+        $expectedOutput = "You refill 4 ball. Ball count: 4." . PHP_EOL;
+
+        $gm = new GumballMachine(0);
+        $this->executeTestCase(function() use ($gm) {
+            $gm->refillBall(4);
+        }, $expectedOutput);
+    }
+
+    public function testRefillBallWhenGumballMachineIsEmpty(): void
+    {
+        $expectedOutput = 'You inserted a quarter' . PHP_EOL;
+        $expectedOutput .= 'You inserted a quarter' . PHP_EOL;
+        $expectedOutput .= 'You turned...' . PHP_EOL;
+        $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
+        $expectedOutput .= 'You refill 4 ball. Ball count: 5.' . PHP_EOL;
+        $expectedOutput .= 'You turned...' . PHP_EOL;
+        $expectedOutput .= 'A gumball comes rolling out the slot...' . PHP_EOL;
+
+        $gm = new GumballMachine(2);
+        $this->executeTestCase(function() use ($gm) {
+            $gm->insertQuarter();
+            $gm->insertQuarter();
+            $gm->turnCrank();
+            $gm->refillBall(4);
+            $gm->turnCrank();
+        }, $expectedOutput);
+    }
+
+    public function testRefillBallWhenGumballMachineIsNotEmpty(): void
+    {
+        $expectedOutput = "You refill 4 ball. Ball count: 10." . PHP_EOL;
+
+        $gm = new GumballMachine(6);
+        $this->executeTestCase(function() use ($gm) {
+            $gm->refillBall(4);
+        }, $expectedOutput);
+    }
+
+    public function testRefillBallWhenGumballMachineIsNotEmptyAndInsertQuarters(): void
+    {
+        $expectedOutput = 'You inserted a quarter' . PHP_EOL;
+        $expectedOutput .= 'You inserted a quarter' . PHP_EOL;
+        $expectedOutput .= 'You inserted a quarter' . PHP_EOL;
+        $expectedOutput .= 'You refill 4 ball. Ball count: 7.' . PHP_EOL;
+
+        $gm = new GumballMachine(3);
+        $this->executeTestCase(function() use ($gm) {
+            $gm->insertQuarter();
+            $gm->insertQuarter();
+            $gm->insertQuarter();
+            $gm->refillBall(4);
+        }, $expectedOutput);
+    }
+
     private function executeTestCase(callable $instruction, string $expectedOutput): void
     {
         ob_start();

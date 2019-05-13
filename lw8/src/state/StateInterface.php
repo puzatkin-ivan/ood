@@ -8,5 +8,6 @@ interface StateInterface
     public function ejectQuarter(): void;
     public function turnCrank(): void;
     public function dispense(): void;
+    public function refillBall(int $numBalls): void;
     public function ToString(): string;
 }
