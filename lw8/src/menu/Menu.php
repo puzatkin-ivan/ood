@@ -18,6 +18,7 @@ class Menu implements MenuInterface
     public function __construct(GumballMachineInterface $gumballMachine)
     {
         $this->gumballMachine = $gumballMachine;
+        $this->isExit = false;
     }
 
     public function getGumballMachine(): GumballMachineInterface
@@ -36,8 +37,6 @@ class Menu implements MenuInterface
      */
     public function execute(string $args): void
     {
-        $this->isExit = false;
-
         $commandStr = $this->removeExtraSpaces($args);
         $commandArgs = explode(' ', $commandStr);
         $item = $this->getItem($commandArgs[0]);

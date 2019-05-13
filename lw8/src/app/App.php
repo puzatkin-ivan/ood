@@ -5,6 +5,8 @@ namespace App;
 use Command\EjectQuarterCommand;
 use Command\Exception\CommandException;
 use Command\ExitCommand;
+use Command\GetBallCountCommand;
+use Command\GetQuarterCountCommand;
 use Command\InsertQuarterCommand;
 use Command\RefillBallCommand;
 use Command\TurnCrankCommand;
@@ -76,5 +78,7 @@ class App
         $menu->addItem(TurnCrankCommand::COMMAND_NAME, new TurnCrankCommand($menu->getGumballMachine()), 'Insert quarter in gumball machine');
         $menu->addItem(EjectQuarterCommand::COMMAND_NAME, new EjectQuarterCommand($menu->getGumballMachine()), 'Insert quarter in gumball machine');
         $menu->addItem(RefillBallCommand::COMMAND_NAME, new RefillBallCommand($menu->getGumballMachine()), 'Insert quarter in gumball machine');
+        $menu->addItem(GetQuarterCountCommand::COMMAND_NAME, new GetQuarterCountCommand($menu->getGumballMachine()), 'Print quarter count');
+        $menu->addItem(GetBallCountCommand::COMMAND_NAME, new GetBallCountCommand($menu->getGumballMachine()), 'Print ball count');
     }
 }

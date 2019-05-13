@@ -17,6 +17,11 @@ class GumballMachine implements GumballMachineInterface
         return $this->context->getBallCount();
     }
 
+    public function getQuarterCount(): int
+    {
+        return $this->context->getQuarterCount();
+    }
+
     public function insertQuarter(): void
     {
         $this->context->insertQuarter();
