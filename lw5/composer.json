@@ -6,6 +6,8 @@
     "psr-4": {
       "App\\": ["src/app", "tests/app"],
       "Command\\": ["src/command", "tests/command"],
+      "Command\\History\\": ["src/command/history", "tests/command/history"],
+      "Command\\History\\Exception\\": ["src/command/history/exception", "tests/command/history/exception"],
       "Document\\": ["src/document", "tests/document"]
     }
   },
