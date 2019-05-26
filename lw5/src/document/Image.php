@@ -4,8 +4,11 @@ namespace Document;
 
 class Image implements ImageInterface, DocumentItemInterface
 {
+    /** @var string */
     private $path;
+    /** @var float */
     private $width;
+    /** @var float */
     private $height;
 
     public function __construct(string $path, float $width, float $height)

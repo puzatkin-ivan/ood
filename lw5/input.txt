@@ -1,0 +1,8 @@
+set_title New Page!
+insert_paragraph Hello, World!
+insert_image W:/!git/ood-clone/resources/morning.jpg 500 500
+insert_paragraph Hello, World! 2
+insert_image W:/!git/ood-clone/resources/morning.jpg 550 550 1
+insert_paragraph Hello, World! 1
+insert_image W:/!git/ood-clone/resources/morning.jpg 1000 500 3
+save resources/release

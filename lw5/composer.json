@@ -6,12 +6,18 @@
     "psr-4": {
       "App\\": ["src/app", "tests/app"],
       "Command\\": ["src/command", "tests/command"],
+      "Command\\Exception\\": ["src/command/exception", "tests/command/exception"],
       "Command\\History\\": ["src/command/history", "tests/command/history"],
       "Command\\History\\Exception\\": ["src/command/history/exception", "tests/command/history/exception"],
-      "Document\\": ["src/document", "tests/document"]
+      "Document\\": ["src/document", "tests/document"],
+      "Editor\\": ["src/editor", "tests/editor"],
+      "Exporter\\": ["src/exporter", "tests/exporter"],
+      "Menu\\": ["src/menu", "tests/menu"],
+      "ImageController\\": ["src/image_controller", "tests/image_controller"]
     }
   },
   "require": {
-    "phpunit/php-code-coverage": "^6.1"
+    "phpunit/php-code-coverage": "^6.1",
+    "ext-readline": "*"
   }
 }
