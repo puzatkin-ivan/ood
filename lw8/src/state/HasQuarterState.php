@@ -51,7 +51,7 @@ class HasQuarterState implements StateInterface
         echo "You refill {$numBalls} ball. Ball count: {$ballCount}." . PHP_EOL;
     }
 
-    public function ToString(): string
+    public function toString(): string
     {
         return 'waiting for turn of crank';
     }

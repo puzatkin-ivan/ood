@@ -17,7 +17,7 @@ class SoldOutStateTest extends TestCase
     public function testStateToString(): void
     {
         $state = new SoldOutState($this->gm);
-        $actualResult = $state->ToString();
+        $actualResult = $state->toString();
 
         $expectedResult = 'sold out';
         $this->assertEquals($expectedResult, $actualResult);

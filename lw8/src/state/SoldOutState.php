@@ -51,7 +51,7 @@ class SoldOutState implements StateInterface
         }
     }
 
-    public function ToString(): string
+    public function toString(): string
     {
         return 'sold out';
     }

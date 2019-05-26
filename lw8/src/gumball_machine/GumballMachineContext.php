@@ -130,7 +130,7 @@ class GumballMachineContext implements GumballMachineContextInterface
     {
         $str = $this->getStringTemplate();
         $postfix = ($this->ballCount != 1 ? 's' : '');
-        return sprintf($str, $this->ballCount, $postfix, $this->state->ToString());
+        return sprintf($str, $this->ballCount, $postfix, $this->state->toString());
     }
 
     private function getStringTemplate(): string

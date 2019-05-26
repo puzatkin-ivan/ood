@@ -19,7 +19,7 @@ class SoldStateTest extends TestCase
         $state = new SoldState($this->gm);
 
         $expectedResult = 'delivering a gumball';
-        $actualResult = $state->ToString();
+        $actualResult = $state->toString();
 
         $this->assertEquals($expectedResult, $actualResult);
     }

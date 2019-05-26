@@ -53,7 +53,7 @@ class SoldState implements StateInterface
         echo 'You can\'t refill ball.' . PHP_EOL;
     }
 
-    public function ToString(): string
+    public function toString(): string
     {
         return 'delivering a gumball';
     }

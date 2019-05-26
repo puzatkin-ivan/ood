@@ -17,7 +17,7 @@ class HasQuarterStateTest extends TestCase
     public function testStateToString(): void
     {
         $state = new HasQuarterState($this->gm);
-        $actualResult = $state->ToString();
+        $actualResult = $state->toString();
 
         $expectedResult = 'waiting for turn of crank';
         $this->assertEquals($expectedResult, $actualResult);
