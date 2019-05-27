@@ -52,6 +52,9 @@ class Ellipse extends Shape
 
     protected function doDraw(CanvasInterface $canvas): void
     {
+        $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
+        $canvas->setOutlineColor($this->getOutlineStyle()->getColor());
+        $canvas->setFillColor($this->getFillStyle()->getColor());
         $canvas->drawEllipse($this->center, $this->horizontalRadius, $this->verticalRadius);
     }
 }

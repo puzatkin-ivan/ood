@@ -37,6 +37,21 @@ class RGBColor
         $this->blue = $blue;
     }
 
+    public function getRedShade(): int
+    {
+        return $this->red;
+    }
+
+    public function getGreenShade(): int
+    {
+        return $this->green;
+    }
+
+    public function getBlueShade(): int
+    {
+        return $this->blue;
+    }
+
     public function __clone()
     {
         return new RGBColor($this->red, $this->green, $this->blue);

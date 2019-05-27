@@ -4,7 +4,12 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": ["src/app", "tests/app"]
+      "App\\": ["src/app", "tests/app"],
+      "Canvas\\": ["src/canvas", "tests/canvas"],
+      "Color\\": ["src/color", "tests/color"],
+      "Shape\\": ["src/shape", "tests/shape"],
+      "Slide\\": ["src/slide", "tests/slide"],
+      "Style\\": ["src/style", "tests/style"]
     }
   },
   "require": {

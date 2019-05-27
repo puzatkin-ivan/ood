@@ -36,6 +36,8 @@ class Rectangle extends Shape
 
     public function setFrame(Frame $frame): void
     {
+        echo $frame->getLeftTopPoint()->getX() . ' ' . $frame->getLeftTopPoint()->getY() . PHP_EOL;
+        echo $frame->getWidth() . ' ' . $frame->getHeight();
         $this->leftTop = $frame->getLeftTopPoint();
         $this->width = $frame->getWidth();
         $this->height = $frame->getHeight();
@@ -51,9 +53,10 @@ class Rectangle extends Shape
         $rightBottom = new Point($rightX, $rightY);
         $leftBottom = new Point($leftX, $rightY);
 
-        $canvas->drawLine($this->leftTop, $rightTop);
-        $canvas->drawLine($rightTop, $rightBottom);
-        $canvas->drawLine($rightBottom, $leftBottom);
-        $canvas->drawLine($leftBottom, $this->leftTop);
+        $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
+        $canvas->setOutlineColor($this->getOutlineStyle()->getColor());
+        $canvas->setFillColor($this->getFillStyle()->getColor());
+
+        $canvas->drawPolygon([$this->leftTop, $rightTop, $rightBottom, $leftBottom]);
     }
 }

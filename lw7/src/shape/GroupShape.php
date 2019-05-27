@@ -3,6 +3,10 @@
 namespace Shape;
 
 use Canvas\CanvasInterface;
+use Style\GroupFillStyle;
+use Style\GroupFillStyleEnumerator;
+use Style\GroupOutlineStyle;
+use Style\GroupOutlineStyleEnumerator;
 use Style\OutlineStyleInterface;
 use Style\StyleInterface;
 
@@ -10,6 +14,17 @@ class GroupShape implements GroupShapeInterface
 {
     /** @var ShapeInterface[] */
     private $shapes;
+    /** @var GroupOutlineStyle */
+    private $groupOutlineStyle;
+    /** @var GroupFillStyle */
+    private $groupFillStyle;
+
+    public function __construct()
+    {
+        $this->shapes = [];
+        $this->groupFillStyle = new GroupFillStyle(new GroupFillStyleEnumerator($this->shapes));
+        $this->groupOutlineStyle = new GroupOutlineStyle(new GroupOutlineStyleEnumerator($this->shapes));
+    }
 
     public function getShapesCount(): int
     {
@@ -58,10 +73,10 @@ class GroupShape implements GroupShapeInterface
             return new Frame(new Point(0, 0), 0, 0);
         }
 
-        $minX = null;
-        $minY = null;
-        $maxX = null;
-        $maxY = null;
+        $minX = PHP_INT_MAX;
+        $minY = PHP_INT_MAX;
+        $maxX = PHP_INT_MIN;
+        $maxY = PHP_INT_MIN;
 
         foreach ($this->shapes as $position => $shape)
         {
@@ -87,8 +102,8 @@ class GroupShape implements GroupShapeInterface
             $oldShapeFrame = $shape->getFrame();
             $oldShapeFrameLeftTop = $oldShapeFrame->getLeftTopPoint();
 
-            $newX = $leftTop->getX() + ($oldShapeFrameLeftTop->getX() - $oldShapeFrameLeftTop->getX()) / $oldGroupFrameLeftTop->getX() * $frame->getWidth();
-            $newY = $leftTop->getY() + ($oldShapeFrameLeftTop->getY() - $oldShapeFrameLeftTop->getY()) / $oldGroupFrameLeftTop->getY() * $frame->getHeight();;
+            $newX = $leftTop->getX() + ($oldShapeFrameLeftTop->getX() - $oldGroupFrameLeftTop->getX()) * ($frame->getWidth() / $oldGroupFrame->getWidth());
+            $newY = $leftTop->getY() + ($oldShapeFrameLeftTop->getY() - $oldGroupFrameLeftTop->getY()) * ($frame->getHeight() / $oldGroupFrame->getHeight());
             $newWidth = $oldShapeFrame->getWidth() * $frame->getWidth() / $oldGroupFrame->getWidth();
             $newHeight = $oldShapeFrame->getHeight() * $frame->getHeight() / $oldGroupFrame->getHeight();
             $newLeftTop = new Point($newX, $newY);
@@ -114,6 +129,10 @@ class GroupShape implements GroupShapeInterface
 
     public function draw(CanvasInterface $canvas): void
     {
+        $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
+        $canvas->setOutlineColor($this->getOutlineStyle()->getColor());
+        $canvas->setFillColor($this->getFillStyle()->getColor());
+
         foreach ($this->shapes as $shape)
         {
             $shape->draw($canvas);

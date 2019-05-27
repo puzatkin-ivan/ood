@@ -4,6 +4,7 @@ namespace Shape;
 
 use Canvas\CanvasInterface;
 use Color\RGBColor;
+use phpDocumentor\Reflection\FqsenResolver;
 use Style\FillStyle;
 use Style\OutlineStyle;
 
@@ -46,24 +47,27 @@ class Triangle extends Shape
     public function setFrame(Frame $frame): void
     {
         $oldFrame = $this->getFrame();
-        $this->vertexA = $this->updateVertex($this->vertexA, $oldFrame);
-        $this->vertexB = $this->updateVertex($this->vertexB, $oldFrame);
-        $this->vertexC = $this->updateVertex($this->vertexC, $oldFrame);
+        $this->vertexA = $this->updateVertex($this->vertexA, $oldFrame, $frame);
+        $this->vertexB = $this->updateVertex($this->vertexB, $oldFrame, $frame);
+        $this->vertexC = $this->updateVertex($this->vertexC, $oldFrame, $frame);
     }
 
     protected function doDraw(CanvasInterface $canvas): void
     {
-        $canvas->drawLine($this->vertexA, $this->vertexB);
-        $canvas->drawLine($this->vertexB, $this->vertexC);
-        $canvas->drawLine($this->vertexC, $this->vertexA);
+        $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
+        $canvas->setOutlineColor($this->getOutlineStyle()->getColor());
+        $canvas->setFillColor($this->getFillStyle()->getColor());
+
+        $canvas->drawPolygon([$this->vertexA, $this->vertexB, $this->vertexC]);
     }
 
-    private function updateVertex(Point $point, Frame $frame): Point
+    private function updateVertex(Point $point, Frame $oldFrame, Frame $frame): Point
     {
-        $leftTop = $frame->getLeftTopPoint();
-        $scaleX = ($point->getX() - $leftTop->getX()) / $frame->getWidth();
-        $scaleY = ($point->getY() - $leftTop->getY()) / $frame->getHeight();
+        $oldLeftTop = $oldFrame->getLeftTopPoint();
+        $scaleX = ($point->getX() - $oldLeftTop->getX()) / $oldFrame->getWidth();
+        $scaleY = ($point->getY() - $oldLeftTop->getY()) / $oldFrame->getHeight();
 
+        $leftTop = $frame->getLeftTopPoint();
         $x = $leftTop->getX() + $frame->getWidth() * $scaleX;
         $y = $leftTop->getY() + $frame->getHeight() * $scaleY;
         return new Point($x, $y);
