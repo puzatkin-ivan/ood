@@ -44,7 +44,7 @@ class GroupShape implements GroupShapeInterface
             return;
         }
 
-        if ($position < 0 && $position >= count($this->shapes))
+        if ($position < 0)
         {
             throw new \OutOfRangeException(sprintf('The index %d is out range shape collection', $position));
         }
@@ -83,9 +83,9 @@ class GroupShape implements GroupShapeInterface
             $oldFrameShape = $this->shapes[$position]->getFrame();
 
             $minX = min($minX, $oldFrameShape->getLeftTopPoint()->getX());
-            $maxX = max($maxX, $oldFrameShape->getLeftTopPoint()->getX());
+            $maxX = max($maxX, $oldFrameShape->getLeftTopPoint()->getX() + $oldFrameShape->getWidth());
             $minY = min($minY, $oldFrameShape->getLeftTopPoint()->getY());
-            $maxY = max($maxY, $oldFrameShape->getLeftTopPoint()->getY());
+            $maxY = max($maxY, $oldFrameShape->getLeftTopPoint()->getY() + $oldFrameShape->getHeight());
         }
 
         return new Frame(new Point($minX, $minY), $maxX - $minX, $maxY - $minY);
@@ -93,21 +93,9 @@ class GroupShape implements GroupShapeInterface
 
     public function setFrame(Frame $frame): void
     {
-        $oldGroupFrame = $this->getFrame();
-        $oldGroupFrameLeftTop = $oldGroupFrame->getLeftTopPoint();
-
         foreach ($this->shapes as $position => $shape)
         {
-            $leftTop = $frame->getLeftTopPoint();
-            $oldShapeFrame = $shape->getFrame();
-            $oldShapeFrameLeftTop = $oldShapeFrame->getLeftTopPoint();
-
-            $newX = $leftTop->getX() + ($oldShapeFrameLeftTop->getX() - $oldGroupFrameLeftTop->getX()) * ($frame->getWidth() / $oldGroupFrame->getWidth());
-            $newY = $leftTop->getY() + ($oldShapeFrameLeftTop->getY() - $oldGroupFrameLeftTop->getY()) * ($frame->getHeight() / $oldGroupFrame->getHeight());
-            $newWidth = $oldShapeFrame->getWidth() * $frame->getWidth() / $oldGroupFrame->getWidth();
-            $newHeight = $oldShapeFrame->getHeight() * $frame->getHeight() / $oldGroupFrame->getHeight();
-            $newLeftTop = new Point($newX, $newY);
-            $newShapeFrame = new Frame($newLeftTop, $newWidth, $newHeight);
+            $newShapeFrame = $this->getNewShapeFrame($shape, $frame);
             $shape->setFrame($newShapeFrame);
         }
     }
@@ -137,5 +125,23 @@ class GroupShape implements GroupShapeInterface
         {
             $shape->draw($canvas);
         }
+    }
+
+    private function getNewShapeFrame(ShapeInterface $shape, Frame $frame): Frame
+    {
+        $oldGroupFrame = $this->getFrame();
+        $oldGroupFrameLeftTop = $oldGroupFrame->getLeftTopPoint();
+        $leftTop = $frame->getLeftTopPoint();
+        $oldShapeFrame = $shape->getFrame();
+        $oldShapeFrameLeftTop = $oldShapeFrame->getLeftTopPoint();
+
+        $newX = $leftTop->getX() + ($oldShapeFrameLeftTop->getX() - $oldGroupFrameLeftTop->getX()) * ($frame->getWidth() / $oldGroupFrame->getWidth());
+        $newY = $leftTop->getY() + ($oldShapeFrameLeftTop->getY() - $oldGroupFrameLeftTop->getY()) * ($frame->getHeight() / $oldGroupFrame->getHeight());
+        $newLeftTop = new Point($newX, $newY);
+
+        $newWidth = $oldShapeFrame->getWidth() * $frame->getWidth() / $oldGroupFrame->getWidth();
+        $newHeight = $oldShapeFrame->getHeight() * $frame->getHeight() / $oldGroupFrame->getHeight();
+
+        return new Frame($newLeftTop, $newWidth, $newHeight);
     }
 }

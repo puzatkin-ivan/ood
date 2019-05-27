@@ -11,6 +11,11 @@ class FillStyle implements StyleInterface
     /** @var bool */
     private $enable;
 
+    /**
+     * FillStyle constructor.
+     * @param RGBColor $color
+     * @param bool|null $enable
+     */
     public function __construct(RGBColor $color, ?bool $enable = true)
     {
         $this->color = $color;
@@ -22,6 +27,9 @@ class FillStyle implements StyleInterface
         return $this->enable;
     }
 
+    /**
+     * @param bool $enable
+     */
     public function enable(bool $enable): void
     {
         $this->enable = $enable;

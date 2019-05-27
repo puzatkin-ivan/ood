@@ -25,12 +25,12 @@ class Frame
 
     public function getWidth(): float
     {
-        return $this->width;
+        return round($this->width, 2);
     }
 
     public function getHeight(): float
     {
-        return $this->height;
+        return round($this->height, 2);
     }
 
     public function __clone()

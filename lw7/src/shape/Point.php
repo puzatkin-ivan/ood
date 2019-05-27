@@ -17,12 +17,12 @@ class Point
 
     public function getX(): float
     {
-        return $this->x;
+        return round($this->x, 2);
     }
 
     public function getY(): float
     {
-        return $this->y;
+        return round($this->y, 2);
     }
 
     public function __clone()

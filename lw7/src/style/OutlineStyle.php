@@ -13,6 +13,12 @@ class OutlineStyle implements OutlineStyleInterface
     /** @var bool */
     private $enable;
 
+    /**
+     * OutlineStyle constructor.
+     * @param RGBColor $color
+     * @param float $thickness
+     * @param bool|null $enable
+     */
     public function __construct(RGBColor $color, float $thickness, ?bool $enable = true)
     {
         $this->color = $color;
