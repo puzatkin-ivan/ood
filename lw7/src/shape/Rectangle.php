@@ -36,8 +36,6 @@ class Rectangle extends Shape
 
     public function setFrame(Frame $frame): void
     {
-        echo $frame->getLeftTopPoint()->getX() . ' ' . $frame->getLeftTopPoint()->getY() . PHP_EOL;
-        echo $frame->getWidth() . ' ' . $frame->getHeight();
         $this->leftTop = $frame->getLeftTopPoint();
         $this->width = $frame->getWidth();
         $this->height = $frame->getHeight();
