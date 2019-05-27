@@ -52,7 +52,7 @@ class Triangle extends Shape
         $this->vertexC = $this->updateVertex($this->vertexC, $oldFrame, $frame);
     }
 
-    protected function doDraw(CanvasInterface $canvas): void
+    public function draw(CanvasInterface $canvas): void
     {
         $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
         $canvas->setOutlineColor($this->getOutlineStyle()->getColor());

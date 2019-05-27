@@ -31,6 +31,11 @@ class Slide implements SlideInterface
         return $this->height;
     }
 
+    public function getShapes(): array
+    {
+        return $this->shapes;
+    }
+
     public function addShape(ShapeInterface $shape): void
     {
         array_push($this->shapes, $shape);

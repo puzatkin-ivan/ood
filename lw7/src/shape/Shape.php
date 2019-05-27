@@ -26,6 +26,8 @@ abstract class Shape implements ShapeInterface
 
     abstract public function setFrame(Frame $frame): void;
 
+    abstract public function draw(CanvasInterface $canvas): void;
+
     public function getOutlineStyle(): OutlineStyleInterface
     {
         return $this->outlineStyle;
@@ -40,11 +42,4 @@ abstract class Shape implements ShapeInterface
     {
         return $this->group;
     }
-
-    public function draw(CanvasInterface $canvas): void
-    {
-        $this->doDraw($canvas);
-    }
-
-    abstract protected function doDraw(CanvasInterface $canvas): void;
 }

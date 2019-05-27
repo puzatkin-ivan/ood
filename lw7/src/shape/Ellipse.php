@@ -50,7 +50,7 @@ class Ellipse extends Shape
         $this->center = new Point($x, $y);
     }
 
-    protected function doDraw(CanvasInterface $canvas): void
+    public function draw(CanvasInterface $canvas): void
     {
         $canvas->setOutlineThickness($this->getOutlineStyle()->getOutlineThickness());
         $canvas->setOutlineColor($this->getOutlineStyle()->getColor());

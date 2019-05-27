@@ -24,9 +24,4 @@ class Point
     {
         return round($this->y, 2);
     }
-
-    public function __clone()
-    {
-        return new Point($this->x, $this->y);
-    }
 }

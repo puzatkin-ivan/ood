@@ -10,5 +10,6 @@ interface SlideInterface extends DrawableInterface
     public function getWidth(): float;
     public function getHeight(): float;
 
+    public function getShapes(): array;
     public function addShape(ShapeInterface $shape): void;
 }

@@ -41,7 +41,7 @@ class Rectangle extends Shape
         $this->height = $frame->getHeight();
     }
 
-    protected function doDraw(CanvasInterface $canvas): void
+    public function draw(CanvasInterface $canvas): void
     {
         $leftX = $this->leftTop->getX();
         $leftY = $this->leftTop->getY();
