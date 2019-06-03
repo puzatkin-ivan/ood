@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "amd",
+    "lib": ["es5", "es6", "dom"],
+    "target": "es5",
+    "outDir": "./build",
+    "sourceMap": true
+  },
+  "files": [
+    "./src/App.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

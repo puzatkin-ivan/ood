@@ -1,0 +1,28 @@
+{
+  "name": "lw9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "chart.js": "^2.8.0",
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^4.3.0",
+    "@types/jquery": "^3.3.29",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "scripts": {
+    "build-tsc": "tsc --project tsconfig.json",
+    "build": "npm run-script build-tsc && webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puzatkin-ivan/ood/tree/master/lw9"
+  },
+  "author": "",
+  "license": "ISC"
+}
