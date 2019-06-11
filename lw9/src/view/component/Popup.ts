@@ -14,6 +14,7 @@
      this._container.modal('show');
      if (this._isEdit && func)
      {
+       $('#deleteItemButton').show();
        const element: string = '#jsTypeSelect option[value=\'' + func.type + '\']';
        this._container.find(element).prop('selected', 'true');
        this._container.find('#jsFunctionId').val(func.id);
@@ -34,6 +35,7 @@
      this._container.find('#jsTypeSelect option[value=\'sin\']').prop('selected', 'true');
      this._container.find('#jsFrequency').val('');
      this._container.find('#jsPhase').val('');
+     $('#deleteItemButton').hide();
    }
 
    public getData() {
@@ -50,6 +52,10 @@
 
    public addSubmitListener(callback: any) {
      this._container.find('#saveItemButton').on('click', callback);
+   }
+
+   public addDeleteListener(callback: any) {
+     $('#deleteItemButton').on('click', callback);
    }
 
    public isEdit(): boolean {

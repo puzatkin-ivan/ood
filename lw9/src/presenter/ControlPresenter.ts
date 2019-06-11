@@ -42,6 +42,7 @@ export class ControlPresenter implements IControlPresenter, IObserver {
 
   public removeHarmonicFunctionAtIndex(index: number) {
     this._model.remove(index);
+    this._view.hideCreateFunctionForm();
   }
 
   public showCreateFunctionForm() {

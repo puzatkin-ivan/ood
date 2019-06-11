@@ -1,7 +1,6 @@
 import {IControlView} from "./IControlView";
 import {IControlPresenter} from "../presenter/IControlPresenter";
 import {Popup} from "./component/Popup";
-import {HarmonicFunction} from "../model/HarmonicFunction";
 
 export class ControlView implements IControlView {
   private _presenter: IControlPresenter;
@@ -10,12 +9,13 @@ export class ControlView implements IControlView {
   private _harmonicFuncSelect: JQuery<HTMLElement>;
 
   constructor() {
-    this._functionForm = new Popup('jsHarmonicFunctionPopup');
     this._addItemButton = $('#addItemButton');
     this._harmonicFuncSelect = $('#jsSelectHarmonicFunction');
-
     this._addItemButton.on('click', this.onClickShowCreateForm.bind(this));
+
+    this._functionForm = new Popup('jsHarmonicFunctionPopup');
     this._functionForm.addSubmitListener(this.onSubmitHarmonicFunction.bind(this));
+    this._functionForm.addDeleteListener(this.onDeleteHarmonicFunction.bind(this));
   }
 
   public setPresenter(presenter: IControlPresenter): void {
@@ -50,7 +50,8 @@ export class ControlView implements IControlView {
     }
 
     this._harmonicFuncSelect.find('option').on('click', (event) => {
-      let index: string = <string>event.currentTarget.valueOf();
+      let option: string = <string>event.currentTarget.valueOf();
+      let index: string = $(option).attr('value');
       this._presenter.showEditFunctionForm(Number.parseInt(index));
     });
   }
@@ -66,5 +67,10 @@ export class ControlView implements IControlView {
     } else {
       this._presenter.addHarmonicFunction(data);
     }
+  }
+
+  private onDeleteHarmonicFunction() {
+    const data: any = this._functionForm.getData();
+    this._presenter.removeHarmonicFunctionAtIndex(data.id);
   }
 }
