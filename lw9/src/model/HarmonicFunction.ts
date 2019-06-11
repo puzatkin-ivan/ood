@@ -24,4 +24,21 @@ export class HarmonicFunction {
       return amplitude * harmonicFunction(frequency * x + phase);
     };
   }
+
+  public toString(): string {
+    const amplitude = Number(this._amplitude) ? Number(this._amplitude) : 0;
+    const frequency = Number(this._frequency) ? Number(this._frequency) : 0;
+    const phase = Number(this._phase) ? Number(this._phase) : 0;
+
+    return amplitude + '*' + this._type + '(' + frequency + '*x +' + phase + ')';
+  }
+
+  toObject(): object {
+    return {
+      type: this._type,
+      amplitude: this._amplitude,
+      frequency: this._frequency,
+      phase: this._phase,
+    };
+  }
 }

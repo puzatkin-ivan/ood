@@ -1,9 +1,15 @@
-import {HarmonicFunction} from "../HarmonicFunction";
+export interface IHarmonicFunctionCollection {
+  getAllFunctions(): any[];
 
-export abstract class IHarmonicFunctionCollection {
-  public abstract getAllFunctions(): any[];
+  add(harmonicFunction: any): number;
 
-  public abstract add(harmonicFunction: HarmonicFunction): number;
+  remove(id: number): void;
 
-  public abstract remove(id: number): void;
+  edit(index: number, newFunc: any): void;
+
+  getFunctionById(id: number): any;
+
+  getSumHarmonicFunction(x: number): number;
+
+  getFunctionCount(): number;
 }
