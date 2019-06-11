@@ -14,8 +14,8 @@
      this._container.modal('show');
      if (this._isEdit && func)
      {
-       const element: string = '#typeSelect option[value=\'' + func.type + '\']';
-       this._container.find(element).attr('selected', 'true');
+       const element: string = '#jsTypeSelect option[value=\'' + func.type + '\']';
+       this._container.find(element).prop('selected', 'true');
        this._container.find('#jsFunctionId').val(func.id);
        this._container.find('#jsAmplitude').val(func.amplitude);
        this._container.find('#jsFrequency').val(func.frequency);
@@ -31,7 +31,7 @@
      this.setIsEdit(false);
      this._container.find('#jsFunctionId').val('');
      this._container.find('#jsAmplitude').val('');
-     this._container.find('#typeSelect option[value=\'sin\']').attr('selected', 'true');
+     this._container.find('#jsTypeSelect option[value=\'sin\']').prop('selected', 'true');
      this._container.find('#jsFrequency').val('');
      this._container.find('#jsPhase').val('');
    }
