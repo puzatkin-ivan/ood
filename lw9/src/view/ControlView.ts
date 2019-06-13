@@ -10,10 +10,10 @@ export class ControlView implements IControlView {
 
   constructor() {
     this._addItemButton = $('#addItemButton');
-    this._harmonicFuncSelect = $('#jsSelectHarmonicFunction');
+    this._harmonicFuncSelect = $('#selectHarmonicFunction');
     this._addItemButton.on('click', this.onClickShowCreateForm.bind(this));
 
-    this._functionForm = new Popup('jsHarmonicFunctionPopup');
+    this._functionForm = new Popup('harmonicFunctionPopup');
     this._functionForm.addSubmitListener(this.onSubmitHarmonicFunction.bind(this));
     this._functionForm.addDeleteListener(this.onDeleteHarmonicFunction.bind(this));
   }

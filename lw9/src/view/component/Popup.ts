@@ -15,12 +15,12 @@
      if (this._isEdit && func)
      {
        $('#deleteItemButton').show();
-       const element: string = '#jsTypeSelect option[value=\'' + func.type + '\']';
+       const element: string = '#typeSelect option[value=\'' + func.type + '\']';
        this._container.find(element).prop('selected', 'true');
-       this._container.find('#jsFunctionId').val(func.id);
-       this._container.find('#jsAmplitude').val(func.amplitude);
-       this._container.find('#jsFrequency').val(func.frequency);
-       this._container.find('#jsPhase').val(func.phase);
+       this._container.find('#functionId').val(func.id);
+       this._container.find('#amplitude').val(func.amplitude);
+       this._container.find('#frequency').val(func.frequency);
+       this._container.find('#phase').val(func.phase);
      }
    }
 
@@ -30,23 +30,23 @@
 
    public clear() {
      this.setIsEdit(false);
-     this._container.find('#jsFunctionId').val('');
-     this._container.find('#jsAmplitude').val('');
-     this._container.find('#jsTypeSelect option[value=\'sin\']').prop('selected', 'true');
-     this._container.find('#jsFrequency').val('');
-     this._container.find('#jsPhase').val('');
+     this._container.find('#functionId').val('');
+     this._container.find('#amplitude').val('');
+     this._container.find('#typeSelect option[value=\'sin\']').prop('selected', 'true');
+     this._container.find('#frequency').val('');
+     this._container.find('#phase').val('');
      $('#deleteItemButton').hide();
    }
 
    public getData() {
-     const typeSelect = this._container.find('#jsTypeSelect');
+     const typeSelect = this._container.find('#typeSelect');
      const selectedType = typeSelect.children("option:selected").val();
      return {
-       id: this._container.find('#jsFunctionId').val(),
+       id: this._container.find('#functionId').val(),
        type: selectedType,
-       amplitude: this._container.find('#jsAmplitude').val(),
-       frequency: this._container.find('#jsFrequency').val(),
-       phase: this._container.find('#jsPhase').val(),
+       amplitude: this._container.find('#amplitude').val(),
+       frequency: this._container.find('#frequency').val(),
+       phase: this._container.find('#phase').val(),
      };
    }
 

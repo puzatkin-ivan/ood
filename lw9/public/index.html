@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>lw9</title>
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-  <div id="jsBody" style="padding: 10px">
+  <div style="padding: 10px">
 
     <div class="form-group" style="width: 200px; float: left;">
-      <label for="jsSelectHarmonicFunction">Harmonic Function</label>
-      <select multiple class="form-control" id="jsSelectHarmonicFunction"></select>
+      <label for="selectHarmonicFunction">Harmonic Function</label>
+      <select multiple class="form-control" id="selectHarmonicFunction"></select>
       <input type="button" id="addItemButton" value="Add Item" style="margin-top: 10px">
     </div>
     <div style="clear: both;"></div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="jsHarmonicFunctionPopup">
+    <div class="modal" tabindex="-1" role="dialog" id="harmonicFunctionPopup">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -25,20 +26,20 @@
             </button>
           </div>
           <div class="modal-body">
-            <form id="jsHarmonicFunctionForm">
-              <input type="hidden" class="form-control" id="jsFunctionId">
+            <form id="harmonicFunctionForm">
+              <input type="hidden" class="form-control" id="functionId">
               <div class="form-group">
-                <label for="jsAmplitude">Amplitude</label>
-                <input name="amplitide" type="text" class="form-control" id="jsAmplitude" placeholder="Amplitude">
-                <label for="jsTypeSelect">Type</label>
-                <select class="form-control" name="type" id="jsTypeSelect">
+                <label for="amplitude">Amplitude</label>
+                <input name="amplitude" type="text" class="form-control" id="amplitude" placeholder="Amplitude">
+                <label for="typeSelect">Type</label>
+                <select class="form-control" name="type" id="typeSelect">
                   <option value="sin" selected>sin</option>
                   <option value="cos">cos</option>
                 </select>
-                <label for="jsFrequency" style="margin-top: 5px">Frequency</label>
-                <input name="frequency" type="text" class="form-control" id="jsFrequency" placeholder="Frequency">
-                <label for="jsPhase" style="margin-top: 5px">Phase</label>
-                <input name="phase" type="text" class="form-control" id="jsPhase" placeholder="Phase">
+                <label for="frequency" style="margin-top: 5px">Frequency</label>
+                <input name="frequency" type="text" class="form-control" id="frequency" placeholder="Frequency">
+                <label for="phase" style="margin-top: 5px">Phase</label>
+                <input name="phase" type="text" class="form-control" id="phase" placeholder="Phase">
               </div>
             </form>
           </div>
@@ -50,8 +51,26 @@
       </div>
     </div>
 
-    <div class="chartWrapper">
-      <canvas id="jsCanvas" width="600" height="300" style="border: 1px solid #8c8c8c"></canvas>
+    <input type="button" id="graphicViewButton" value="Graphic" style="margin-bottom: 10px">
+    <input type="button" id="tableViewButton" value="Table" style="margin-bottom: 10px">
+
+    <div class="chartWrapper" id="graphicContainer" >
+      <canvas id="canvas" width="600" height="300" style="border: 1px solid #8c8c8c"></canvas>
+    </div>
+
+    <div class="tableWrapper" id="tableContainer" style="display: none;">
+      <table id="table" class="table" style="width: 400px;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">x</th>
+            <th scope="col">y</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </div>
   </div>
   <script src="dist/jquery.min.js"></script>

@@ -1,10 +1,8 @@
 import {IHarmonicFunctionCollection} from "../model/collection/IHarmonicFunctionCollection";
 import {IGraphicView} from "../view/IGraphicView";
 import {IGraphicPresenter} from "./IGraphicPresenter";
-import {IObserver} from "../observer/IObserver";
-import {Observable} from "../observer/Observable";
 
-export class GraphicPresenter implements IGraphicPresenter, IObserver {
+export class GraphicPresenter implements IGraphicPresenter {
   private _view: IGraphicView;
   private _model: IHarmonicFunctionCollection;
 
@@ -12,10 +10,7 @@ export class GraphicPresenter implements IGraphicPresenter, IObserver {
     this._model = model;
     this._view = view;
 
-    if (this._model instanceof Observable)
-    {
-      this._model.registerObserver(this);
-    }
+    this._model.registerObserver(this);
   }
 
   public update() {

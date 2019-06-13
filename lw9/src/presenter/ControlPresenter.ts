@@ -1,10 +1,8 @@
 import {IControlPresenter} from "./IControlPresenter";
 import {IHarmonicFunctionCollection} from "../model/collection/IHarmonicFunctionCollection";
 import {IControlView} from "../view/IControlView";
-import {IObserver} from "../observer/IObserver";
-import {Observable} from "../observer/Observable";
 
-export class ControlPresenter implements IControlPresenter, IObserver {
+export class ControlPresenter implements IControlPresenter {
   private _model: IHarmonicFunctionCollection;
   private _view: IControlView;
 
@@ -12,10 +10,7 @@ export class ControlPresenter implements IControlPresenter, IObserver {
     this._model = model;
     this._view = view;
 
-    if (this._model instanceof  Observable)
-    {
-      this._model.registerObserver(this);
-    }
+    this._model.registerObserver(this);
   }
 
   public update(): void {

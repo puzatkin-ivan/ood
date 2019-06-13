@@ -5,14 +5,15 @@ export class GraphicView implements IGraphicView {
   private _presenter: IGraphicPresenter;
   private _canvas: any;
   private _axes: any;
+  private _container: JQuery<HTMLElement>;
 
-  constructor() {
-    this._canvas = document.getElementById('jsCanvas');
+  constructor(idContainer: string) {
+    this._container = $('#' + idContainer);
+    this._canvas = document.getElementById('canvas');
     this._axes = {
       x: 0.5 * this._canvas.width,
       y: 0.5 * this._canvas.height,
       scale: 40,
-      negativeX: true,
     };
   }
 
@@ -25,6 +26,14 @@ export class GraphicView implements IGraphicView {
 
     this.drawAxes();
     this.drawHarmonicFunctionSum('#b12409', 1);
+  }
+
+  public show(): void {
+    this._container.show();
+  }
+
+  public hide(): void {
+    this._container.hide();
   }
 
   private drawAxes() {

@@ -1,4 +1,6 @@
-export interface IHarmonicFunctionCollection {
+import {IObservable} from "../../observer/IObservable";
+
+export interface IHarmonicFunctionCollection extends IObservable {
   getAllFunctions(): any[];
 
   add(harmonicFunction: any): number;
